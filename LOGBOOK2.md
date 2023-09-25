@@ -29,4 +29,4 @@ One public example of automation can be found [here](https://github.com/Arinerro
 
 ## Ataques
 
-This exploit was used to grant temporary root access for Android. This only worked on Google Pixel 6 and certain versions Galaxy S22. Dirty Pipe was finally patched on May 2022 security update on Pixel 6.
+This exploit was used to grant temporary root access for Android. This only worked on Google Pixel 6 and certain versions Samsung Galaxy S22. On Google Pixel 6, the Dirty Pipe exploit was finally patched on May 2022 security update.
