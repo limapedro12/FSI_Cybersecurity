@@ -23,7 +23,7 @@ This exploit makes use of the _splice()_ which is a system call that moves data 
 To start the exploit, you need to read the target file so that it gets cached in the page cache.
 Then create a pipe with the PIPE_BUF_FLAG_CAN_MERGE flag set.
 Next, use the _splice()_ system call to make the pipe point to the location of the page cache where the desired data of the file is cached.
-Finally, you can write the arbitrary data into the pipe. This data will overwrite the cached file page & because PIPE_BUF_FLAG_CAN_MERGE is set, it ultimately overwrites the file on the disk, thus completing the exploit.
+Finally, you can write the arbitrary data into the pipe. This data will overwrite the cached file page and because PIPE_BUF_FLAG_CAN_MERGE is set, it ultimately overwrites the file on the disk, thus completing the exploit.
 
 One public example of automation can be found [here](https://github.com/Arinerron/CVE-2022-0847-DirtyPipe-Exploit). It changes the root password to “aaron” by modifying the /etc/passwd file. It also creates a backup and after exiting your shell it will restore the backup.
 
