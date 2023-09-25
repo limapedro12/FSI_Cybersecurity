@@ -5,4 +5,4 @@ Breve descrição do grupo
 * Alunos:
     - João Pedro Passos up202108833
     - Pedro Lima up202108806
-    - Aluno3 upZZZZZ
+    - Diogo Sousa up202103341
