@@ -1,9 +1,8 @@
-
 Breve descrição do grupo
 
-* Turno: [L]XX
-* Grupo: YY
+* Turno: LEIC06
+* Grupo: 07
 * Alunos:
-    - Aluno1 upZZZZZ 
-    - Aluno2 upZZZZZ
+    - João Pedro Passos up202108833
+    - Pedro Lima up202108806
     - Aluno3 upZZZZZ
