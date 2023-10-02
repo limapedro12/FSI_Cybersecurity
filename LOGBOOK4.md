@@ -11,7 +11,7 @@ Corremos o myprintenv.c como nos foi dado salvando o output para o "file1", e de
 Primeiro executamos o programs myenv.c como nos foi dado. A seguir, mudamos a linha pedida no guião para _execve("/usr/bin/env", argv, environ);_. _environ_ é uma variavel externa herdada do processo pai. Ou seja, ao correr o programa alterado, imprimimos as variaveis de ambiente do processo pai, que neste caso é a shell.
 
 ### Task 4
-Ao compilarmos e corrermos o codigo dado imprimimos as variaveis de ambiente do "calling process" confirmando que as variaveis são passadas para o novo programa.
+Ao compilarmos e corrermos o codigo dado imprimimos as variaveis de ambiente do processo pai confirmando que as variaveis são passadas para o novo programa.
 
 ### Task 5
 
