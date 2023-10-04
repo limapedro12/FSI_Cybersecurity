@@ -26,12 +26,16 @@ Depois corremos o task6 outra vez e a shell devolveu-nos `zsh:1: command not fou
 Por isso criamos um novo ficheiro ao qual chamamos ls.c e escrevemos o seguite codigo:
 ```c
 #include <stdio.h>
+#include <unistd.h>
 
 int main() {
-    printf("I did it!!! :)");
+    printf("I did it!!! :)\n");
+    printf("%d\n", geteuid());
     return 0;
 }
+
 
 ```
 Depois compilamos o código, dando ao ficheiro binário o nome de "ls".
 Corremos novamente o task6 e o programa correu o codigo que acabamos de escrever.
+Com isto também descobrimos que o código não está a correr com privilégios _root_, uma vez que imprimimos o effective user ID (com a chamada a geteuid()) e este imprimiu 1000, que é diferente do ID do _root_, que é 0.
