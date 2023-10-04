@@ -16,3 +16,22 @@ Ao compilarmos e corrermos o codigo dado imprimimos as variaveis de ambiente do 
 ### Task 5
 
 ### Task 6
+Em primeiro lugar compilamos (dando o nome de "task6" ao ficheiro binário) e corremos na shell o codigo C dado no enunciado, sem fazer nenhuma alteração à variavel de ambiente _PATH_. Isto imprimiu os ficheiros do diretorio atual. 
+A seguir, corremos os seguintes comandos:
+- `sudo ln -sf /bin/zsh /bin/sh` como estava indocado no guião
+- `sudo chown root task6`, de modo a definir o _root_ como owner do ficheiro
+- `sudo chmod 4755 task6`, de modo a definir o ficheiro como um "Set-UID program"
+- `export PATH=/home/seed/Desktop/FSI`, de modo a redifinir a localização do "bin" para a nossa localizacao atual.
+Depois corremos o task6 outra vez e a shell devolveu-nos `zsh:1: command not found: ls `.
+Por isso criamos um novo ficheiro ao qual chamamos ls.c e escrevemos o seguite codigo:
+```c
+#include <stdio.h>
+
+int main() {
+    printf("I did it!!! :)");
+    return 0;
+}
+
+```
+Depois compilamos o código, dando ao ficheiro binário o nome de "ls".
+Corremos novamente o task6 e o programa correu o codigo que acabamos de escrever.
