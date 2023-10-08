@@ -14,6 +14,16 @@ Primeiro executamos o programs myenv.c como nos foi dado. A seguir, mudamos a li
 Ao compilarmos e corrermos o codigo dado imprimimos as variaveis de ambiente do processo pai. Com isto comfirmamos que as variaveis são passadas para o novo programa.
 
 ### Task 5
+Em primeiro lugar compilamos (dando o nome de "foo") e corremos na shell o codigo C dado no enunciado. Isto imprimiu as variaveis de ambiente do processo atual.
+A seguir, corremos os seguintes comandos:
+- `sudo chown root foo` alterando a propriedade para root.
+- `sudo chmod 4755 foo` de modo a torná-lo Set-UID.
+- `export PATH="/home/FSI/Labsetup:$PATH"` de modo a difinir a variavel de ambiente PATH para o diretorio "/home/FSI/Labsetup".
+- `export LD_LIBRARY_PATH="/your/new/library/path:$LD_LIBRARY_PATH"` de modo a difinir a variavel de ambiente LD_LIBRARY_PATH para o diretorio "/home/FSI/Labsetup".
+- `export MY_VARIABLE="Hello World"` de modo a difinir a variavel de ambiente MY_VARIABLE para "Hello World".
+Depois corremos o programa Set-UID ("foo") que emprimiu as variaveis de ambiente. Dentro das variaveis estavam todas as que defenimos menos LD_LIBRARY_PATH. Com isto concluimos que as variaveis PATH e MY_VARIABLE foram herdadas processo filho do Set-UID.
+
+
 
 ### Task 6
 Em primeiro lugar compilamos (dando o nome de "task6" ao ficheiro binário) e corremos na shell o codigo C dado no enunciado, sem fazer nenhuma alteração à variavel de ambiente _PATH_. Isto imprimiu os ficheiros do diretorio atual. 
