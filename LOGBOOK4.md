@@ -18,10 +18,11 @@ Em primeiro lugar compilamos (dando o nome de "foo") e corremos na shell o codig
 A seguir, corremos os seguintes comandos:
 - `sudo chown root foo` alterando a propriedade para root.
 - `sudo chmod 4755 foo` de modo a torná-lo Set-UID.
-- `export PATH="/home/FSI/Labsetup:$PATH"` de modo a difinir a variavel de ambiente PATH para o diretorio "/home/FSI/Labsetup".
-- `export LD_LIBRARY_PATH="/your/new/library/path:$LD_LIBRARY_PATH"` de modo a difinir a variavel de ambiente LD_LIBRARY_PATH para o diretorio "/home/FSI/Labsetup".
-- `export MY_VARIABLE="Hello World"` de modo a difinir a variavel de ambiente MY_VARIABLE para "Hello World".
-Depois corremos o programa Set-UID ("foo") que emprimiu as variaveis de ambiente. Dentro das variaveis estavam todas as que defenimos menos LD_LIBRARY_PATH. Com isto concluimos que as variaveis PATH e MY_VARIABLE foram herdadas processo filho do Set-UID.
+- `export PATH="/home/FSI/Labsetup:$PATH"` de modo a definir a variável de ambiente PATH para o diretorio "/home/FSI/Labsetup".
+- `export LD_LIBRARY_PATH="/your/new/library/path:$LD_LIBRARY_PATH"` de modo a definir a variável de ambiente LD_LIBRARY_PATH para o diretório "/home/FSI/Labsetup".
+- `export MY_VARIABLE="Hello World"` de modo a definir a variável de ambiente MY_VARIABLE para "Hello World".
+
+Depois corremos o programa Set-UID ("foo") que imprimiu as variaveis de ambiente. Dentro das variáveis estavam todas as que definimos menos LD_LIBRARY_PATH. Com isto concluimos que as variáveis PATH e MY_VARIABLE foram herdadas pelo processo filho do Set-UID.
 
 
 
