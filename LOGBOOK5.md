@@ -1,6 +1,6 @@
 ### Task 1
-Tentamos compilar o codigo dado mas não funcionou porque faltava incluir a biblioteca que contem a função "execve".
-De modo que tivemos que adicionar no início do codigo ´#include <unistd.h>´. Ao compilarmos e corrermos o programa nada aconteceu como era esperado.
+Compilamos o ficheiro "call_shellcode.c" usando o makefile como foi pedido e dois binarios foram criados "a32.out" e "a64.out".
+Ao corrermos estes binarios ambos executaram uma simples shell sem diferença de comportamento entre eles.
 
 ### Task 2
 
