@@ -20,10 +20,25 @@ Depois no ficheiro "exploit.py":
  Input size: 517
  Illegal instruction
 ```
-Então no "exploit.py" mudamos "ret" para `0xffffcab8 + 200`. Corremos novamente "exploit.py" e "stack-L1" e obtivemos a mesma resposta. Mudamos novamente "ret" para `0xffffcab8 + 150` e corremos "stack-L1" e obtivemos a mesma resposta. Ao fim de algumas tentativas chegamos a `ret = 0xffffcab8 + 50` e ao correr o "stack-L1" conseguimos acesso à root shell.
+Então no "exploit.py" mudamos "ret" para `0xffffcab8 + 200`. Corremos novamente "exploit.py" e "stack-L1" e conseguimos acesso à root shell.
 
 
 ### Task 3
 
 
 ### Task 4
+Nesta task não sabemos o tamanho exato do buffer, apenas que está entre 100 e 200 bytes.
+Primeiro corremos o ficheiro makefile que estava dentro da pasta "Labsetup/code", que nos gera 8 ficheiros: stack-L1, stack-L1-dbg, stack-L2, stack-L2-dbg stack-L3, stack-L3-dbg stack-L4, stack-L4-dbg. 
+Depois criamos um ficheiro vazio com o comando `touch badfile`.
+De seguida corremos o debugger com o comando `gdb stack-L2-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço o "buffer", correndo `p &buffer`, que nos devolveu `$1 = (char (*)[160]) 0xffffca10`. Ao contrário dos ataques anteriores, não podemos imprimir o endereço de "ebp". Depois disto calculamos a diferença entre os dois endereços que é 108. Com isto já podemos sair do debugger.
+Depois no ficheiro "exploit.py":
+ - substituimos o codigo na variavel "shellcode" pelo shellcode de 32 bit presente no ficheiro call_shellcode.c da pasta "Labsetup/shellcode"
+ - comentamos a variavel "start" e substituimos a linha seuinte por `content[517 - len(shellcode):] = shellcode`, de modo a colocar o nosso shellcode no fim do ficheiro badfile.
+ - definimos "ret" como o endereço do "buffer"(0xffffca10) mais 300
+ - comentamos a variavel "offset" e substituimos a linha que contém `content[offset:offset + L] = (ret).to_bytes(L,byteorder='little') ` por:
+ ```py
+for offset in range(50):
+	content[offset*L:offset*4 + L] = (ret).to_bytes(L,byteorder='little') 
+ ```
+ Fizemos isto porque como não sabemos exatamente o tamanho do buffer, precisamos de utilizar a técnica de Spray, ou seja, temos que colocar o nosso endereço de retorno em vários sitios, de modo a tentar acertar no correto.
+ De seguida corremos o programa "exploit.py" e corremos "stack-L2" e e conseguimos acesso à root shell.
