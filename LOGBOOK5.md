@@ -20,8 +20,9 @@ De seguida corremos o debugger com o comando `gdb stack-L1-dbg`. Aqui na consola
 Depois no ficheiro "exploit.py":
  - substituimos o codigo na variavel "shellcode" pelo shellcode de 32 bit presente no ficheiro call_shellcode.c da pasta "Labsetup/shellcode"
  - definimos "start" como 300
- - definimos "ret" como o endereço de "ebp"(0xffffcab8) mais 100
  - definimos offset como a difereça calculada anteriormente mais 4, ou seja, 108 + 4 = 112.
+
+ ??  - definimos "ret" como o endereço de "ebp"(0xffffcab8) mais 100 ??
  
  De seguida corremos o programa "exploit.py" e corremos "stack-L1" e obtivemos:
  ```
