@@ -22,14 +22,24 @@ Depois no ficheiro "exploit.py":
  - definimos "start" como 300
  - definimos offset como a difereça calculada anteriormente mais 4, ou seja, 108 + 4 = 112.
 
- ??  - definimos "ret" como o endereço de "ebp"(0xffffcab8) mais 100 ??
+A ideia é fazer com que a função retorne para um endereço entre o local onde está guardado o endereço de retorno(que é o endereço de ebp + 4) e o shellcode, para que assim o programam corra o shellcode fornecido. Por isso decidimos optar por uma abordagem de tentativa e erro. Se o valor for muito baixo obteremos:
+ ```
+ Input size: 517
+ Illegal instruction
+```
+Se o valor for muito alto obteremos:
+ ```
+ Input size: 517
+ Segmentation fault
+```
+Com isto, começamos por fazer com que a função retorne para o endereço de "ebp" mais 100, ou seja, definimos no "exploit.py" a variavel "ret" como o endereço de "ebp"(0xffffcab8) mais 100 .
  
  De seguida corremos o programa "exploit.py" e corremos "stack-L1" e obtivemos:
  ```
  Input size: 517
  Illegal instruction
 ```
-Então no "exploit.py" mudamos "ret" para `0xffffcab8 + 200`. Corremos novamente "exploit.py" e "stack-L1" e conseguimos acesso à root shell.
+Então concluimos que o endereço de retorno é demasiado baixo. Assim mudamos "ret" para `0xffffcab8 + 200`. Corremos novamente "exploit.py" e "stack-L1" e conseguimos acesso à root shell.
 
 
 ### Task 4
