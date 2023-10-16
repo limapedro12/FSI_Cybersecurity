@@ -7,6 +7,10 @@ Compilamos o ficheiro "call_shellcode.c" usando o makefile como foi pedido e doi
 Ao corrermos estes binarios ambos executaram uma simples shell sem diferença de comportamento entre eles.
 
 ### Task 2
+No enunciado e nos apresentado um codigo c suscetivel a ataques de buffer overflow. Poderemos tirar partido do `strcpy(buffer, str)`, que ira inserir a informacao que esta em "str" no "buffer", mesmo que str seja maior que o buffer, e se assim for ira ocorrer um buffer overflow. Com isto poderemos escrever por cima do "RET", e assim mudando o endereco para o qual a funcao, apos ser executada ira retornar, fazendo-a retornar para o nosso codigo malicioso.
+
+
+### Task 3
 Para começar começamos por copiar o conteudo do diretorio "category-software/Buffer_Overflow_Setuid" para um diretorio na área de trabalho. De seguida corremos o ficheiro makefile que estava dentro da pasta "Labsetup/code", que nos gerou 8 ficheiros: stack-L1, stack-L1-dbg, stack-L2, stack-L2-dbg stack-L3, stack-L3-dbg stack-L4, stack-L4-dbg. 
 
 Depois de analisarmos o codigo em stack.c, concluimos que para correm o programa precisariamos de um ficheiro chamado "badfile" no mesmo diretorio que o executavel. Entao criamos um ficheiro vazio com o comando `touch badfile`.
@@ -25,9 +29,6 @@ Depois no ficheiro "exploit.py":
  Illegal instruction
 ```
 Então no "exploit.py" mudamos "ret" para `0xffffcab8 + 200`. Corremos novamente "exploit.py" e "stack-L1" e conseguimos acesso à root shell.
-
-
-### Task 3
 
 
 ### Task 4
