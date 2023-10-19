@@ -7,7 +7,7 @@ Compilamos o ficheiro "call_shellcode.c" usando o makefile como foi pedido e doi
 Ao corrermos estes binarios ambos executaram uma simples shell sem diferença de comportamento entre eles.
 
 ### Task 2
-No enunciado é nos apresentado um código em C suscetivel a ataques de buffer overflow. Poderemos tirar partido do `strcpy(buffer, str)`, que irá inserir a informação que está em "str" no "buffer", mesmo que "str" seja maior que o "buffer", e se assim for irá ocorrer um buffer overflow. Com isto poderemos escrever por cima do "RET", e assim mudando o endereço para o qual a função, após ser executada irá retornar, fazendo-a retornar para o nosso código malicioso.
+No enunciado é nos apresentado um código em C suscetivel a ataques de buffer overflow. Poderemos tirar partido do `strcpy(buffer, str)`, que irá inserir no "buffer" a informação que está em "str", mesmo que "str" seja maior que o "buffer", e se assim for irá ocorrer um buffer overflow. Com isto poderemos escrever por cima do "RET", e assim mudando o endereço para o qual a função, após ser executada, irá retornar, fazendo-a retornar para o nosso código malicioso.
 
 
 ### Task 3
