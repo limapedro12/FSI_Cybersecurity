@@ -15,12 +15,15 @@ Para começar começamos por copiar o conteudo do diretorio "category-software/B
 
 Depois de analisarmos o codigo em stack.c, concluimos que para correm o programa precisariamos de um ficheiro chamado "badfile" no mesmo diretorio que o executavel. Entao criamos um ficheiro vazio com o comando `touch badfile`.
 
-De seguida corremos o debugger com o comando `gdb stack-L1-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço do "ebp" e do "buffer", correndo `p $ebp`, que nos devolveu `$1 = (void *) 0xffffcab8` e`p &buffer`, que nos devolveu `$2 = (char (*)[100]) 0xffffca4c`. Depois disto calculamos a diferença entre os dois endereços que é 108. Com isto já podemos sair do debugger.
+De seguida corremos o debugger com o comando `gdb stack-L1-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço do "ebp" e do "buffer", correndo `p $ebp`, que nos devolveu `$1 = (void *) 0xffffcaa8` e`p &buffer`, que nos devolveu `$2 = (char (*)[100]) 0xffffca3c`. Depois disto calculamos a diferença entre os dois endereços que é 108. Com isto já podemos sair do debugger.
 
-Depois no ficheiro "exploit.py":
- - substituimos o codigo na variavel "shellcode" pelo shellcode de 32 bit presente no ficheiro call_shellcode.c da pasta "Labsetup/shellcode"
- - definimos "start" como 300
- - definimos offset como a difereça calculada anteriormente mais 4, ou seja, 108 + 4 = 112.
+Depois alteramos o ficheiro "exploit.py", já fornecido. 
+
+Substituimos o codigo na variavel "shellcode" pelo shellcode de 32 bit presente no ficheiro call_shellcode.c da pasta "Labsetup/shellcode".
+
+Definimos "start" como 300.
+
+Definimos "offset" a diferença entre o &buffer e a localização do RET, que é a instrução acima do $ebp, logo definimos "offset" como a difereça calculada anteriormente mais 4, ou seja, 108 + 4 = 112.
 
 A ideia é fazer com que a função retorne para um endereço entre o local onde está guardado o endereço de retorno(que é o endereço de ebp + 4) e o shellcode, para que assim o programam corra o shellcode fornecido. Por isso decidimos optar por uma abordagem de tentativa e erro. Se o valor for muito baixo obteremos:
  ```
