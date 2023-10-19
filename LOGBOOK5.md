@@ -17,32 +17,27 @@ Depois de analisarmos o codigo em stack.c, concluimos que para correm o programa
 
 De seguida corremos o debugger com o comando `gdb stack-L1-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço do "ebp" e do "buffer", correndo `p $ebp`, que nos devolveu `$1 = (void *) 0xffffcaa8` e`p &buffer`, que nos devolveu `$2 = (char (*)[100]) 0xffffca3c`. Depois disto calculamos a diferença entre os dois endereços que é 108. Com isto já podemos sair do debugger.
 
+![consola do gdb]
+
 Depois alteramos o ficheiro "exploit.py", já fornecido. 
 
 Substituimos o codigo na variavel "shellcode" pelo shellcode de 32 bit presente no ficheiro call_shellcode.c da pasta "Labsetup/shellcode".
 
-Definimos "start" como 300.
+Definimos "start" como `517 - len(shellcode)`, para colocar o shell code no fim do ficheiro badfile.
 
 Definimos "offset" a diferença entre o &buffer e a localização do RET, que é a instrução acima do $ebp, logo definimos "offset" como a difereça calculada anteriormente mais 4, ou seja, 108 + 4 = 112.
 
-A ideia é fazer com que a função retorne para um endereço entre o local onde está guardado o endereço de retorno(que é o endereço de ebp + 4) e o shellcode, para que assim o programam corra o shellcode fornecido. Por isso decidimos optar por uma abordagem de tentativa e erro. Se o valor for muito baixo obteremos:
- ```
- Input size: 517
- Illegal instruction
-```
-Se o valor for muito alto obteremos:
- ```
- Input size: 517
- Segmentation fault
-```
-Com isto, começamos por fazer com que a função retorne para o endereço de "ebp" mais 100, ou seja, definimos no "exploit.py" a variavel "ret" como o endereço de "ebp"(0xffffcab8) mais 100 .
+Definimos "ret" como o endereço do "ebp"(0xffcaa8) mais "start", assim fazendo com que a função retorne para o inicio do shellcode introduzido.
  
- De seguida corremos o programa "exploit.py" e corremos "stack-L1" e obtivemos:
- ```
- Input size: 517
- Illegal instruction
-```
-Então concluimos que o endereço de retorno é demasiado baixo. Assim mudamos "ret" para `0xffffcab8 + 200`. Corremos novamente "exploit.py" e "stack-L1" e conseguimos acesso à root shell.
+![exploit.py]()
+
+De seguida corremos o programa "exploit.py" e corremos "stack-L1" e conseguimos acesso à root shell. 
+
+![root shell]()
+
+Tentamos correr o programa através do gdb com o comando `gdb stack-L1-dbg` seguido de `run` e obtivemos a seguinte resposta:
+
+![0xffffcc92]()
 
 
 ### Task 4
