@@ -46,17 +46,21 @@ Primeiro corremos o ficheiro makefile que estava dentro da pasta "Labsetup/code"
 
 Depois criamos um ficheiro vazio com o comando `touch badfile`.
 
-De seguida corremos o debugger com o comando `gdb stack-L2-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço o "buffer", correndo `p &buffer`, que nos devolveu `$1 = (char (*)[160]) 0xffffca10`. Ao contrário dos ataques anteriores, não podemos imprimir o endereço de "ebp". Depois disto calculamos a diferença entre os dois endereços que é 108. Com isto já podemos sair do debugger.
+De seguida corremos o debugger com o comando `gdb stack-L2-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço o "buffer", correndo `p &buffer`, que nos devolveu `$1 = (char (*)[160]) 0xffffca10`. Ao contrário dos ataques anteriores, não podemos imprimir o endereço de "ebp". Com isto já podemos sair do debugger.
+
+![consola do gdb](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/LOGBOOK5_Task4_1.png)
 
 Depois no ficheiro "exploit.py":
  - substituimos o codigo na variavel "shellcode" pelo shellcode de 32 bit presente no ficheiro call_shellcode.c da pasta "Labsetup/shellcode"
  - comentamos a variavel "start" e substituimos a linha seuinte por `content[517 - len(shellcode):] = shellcode`, de modo a colocar o nosso shellcode no fim do ficheiro badfile.
- - definimos "ret" como o endereço do "buffer"(0xffffca10) mais 300
+ - definimos "ret" como o endereço do "buffer"(0xffffca00) mais 300
  - comentamos a variavel "offset" e substituimos a linha que contém `content[offset:offset + L] = (ret).to_bytes(L,byteorder='little') ` por:
  ```py
 for offset in range(50):
 	content[offset*L:offset*4 + L] = (ret).to_bytes(L,byteorder='little') 
  ```
- Fizemos isto porque como não sabemos exatamente o tamanho do buffer, precisamos de utilizar a técnica de Spray, ou seja, temos que colocar o nosso endereço de retorno em vários sitios, de modo a tentar acertar no correto.
+Fizemos isto porque como não sabemos exatamente o tamanho do buffer, precisamos de utilizar a técnica de Spray, ou seja, temos que colocar o nosso endereço de retorno em vários sitios, de modo a tentar acertar no correto.
+
+![exploit.py](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/LOGBOOK5_Task4_2.png)
  
- De seguida corremos o programa "exploit.py" e corremos "stack-L2" e e conseguimos acesso à root shell.
+De seguida corremos o programa "exploit.py" e corremos "stack-L2" e e conseguimos acesso à root shell.
