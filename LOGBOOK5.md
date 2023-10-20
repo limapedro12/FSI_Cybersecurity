@@ -11,7 +11,7 @@ No enunciado é nos apresentado um código em C suscetivel a ataques de buffer o
 
 
 ### Task 3
-Para começar começamos por copiar o conteudo do diretorio "category-software/Buffer_Overflow_Setuid" para um diretorio na área de trabalho. De seguida corremos o ficheiro makefile que estava dentro da pasta "Labsetup/code", que nos gerou 8 ficheiros: stack-L1, stack-L1-dbg, stack-L2, stack-L2-dbg stack-L3, stack-L3-dbg stack-L4, stack-L4-dbg. 
+Começamos por copiar o conteudo do diretorio "category-software/Buffer_Overflow_Setuid" para um diretorio na área de trabalho. De seguida corremos o ficheiro makefile que estava dentro da pasta "Labsetup/code", que nos gerou 8 ficheiros: stack-L1, stack-L1-dbg, stack-L2, stack-L2-dbg stack-L3, stack-L3-dbg stack-L4, stack-L4-dbg. 
 
 Depois de analisarmos o codigo em stack.c, concluimos que para correm o programa precisariamos de um ficheiro chamado "badfile" no mesmo diretorio que o executavel. Entao criamos um ficheiro vazio com o comando `touch badfile`.
 
