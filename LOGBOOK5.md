@@ -15,7 +15,7 @@ Começamos por copiar o conteudo do diretorio "category-software/Buffer_Overflow
 
 Depois de analisarmos o codigo em stack.c, concluimos que para correr o programa precisariamos de um outro ficheiro chamado "badfile" no mesmo diretorio que o executavel. Entao criamos um ficheiro vazio com o comando `touch badfile`.
 
-De seguida corremos o debugger com o comando `gdb stack-L1-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço do "ebp" e do "buffer", correndo `p $ebp`, que nos devolveu `$1 = (void *) 0xffffcaa8` e`p &buffer`, que nos devolveu `$2 = (char (*)[100]) 0xffffca3c`. Depois disto calculamos a diferença entre os dois endereços, que é 108. Com isto já podemos sair do debugger.
+De seguida corremos o debugger com o comando `gdb stack-L1-dbg`. Aqui na consola do gdb, criamos um breakpoint no inicio da função "bof", escrevendo `b bof`. De seguida corremos o programa, com`run` e escrevemos `next` para avançar para a instrução seguinte, que neste caso é `strcpy(buffer, str);`, onde poderá acontecer um buffer overflow. Aqui imprimimos o endereço do "ebp" e do "buffer", correndo `p $ebp`, que nos devolveu `$1 = (void *) 0xffffcaa8` e correndo `p &buffer`, que nos devolveu `$2 = (char (*)[100]) 0xffffca3c`. Depois disto calculamos a diferença entre os dois endereços, que é 108. Com isto já podemos sair do debugger.
 
 ![consola do gdb](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/LOGBOOK5_Task3_1.png)
 
