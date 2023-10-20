@@ -1,5 +1,6 @@
 Ir para tmp folder e criar lib.c:
 
+```
 #include <stdio.h>
 
 #include <stdlib.h>
@@ -12,6 +13,7 @@ int access(const char *pathname, int mode){
 
       return 0;
 }
+```
 
 
 Dar permissões a lib.c:
