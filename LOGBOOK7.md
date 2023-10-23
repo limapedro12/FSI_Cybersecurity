@@ -56,6 +56,20 @@ Correndo obtivemos:
  
 ##Tarefa 2.B
 
+Sabemos que o segredo está guardado no endereço "0x080b4008", logo temos que escrever este endereço no inicio da string, e depois utilizando vários "%x" avaçamos os elementos na stack, até chegar ao início da string, onde está guardado o endereço do segredo. Lemos este endereço utilizando o "%s", que nos irá levar ao segredo. O "%s" recebe um apontador para o primeiro caracter de uma string e imprime essa string. Assim, ao lermos o endereço do segredo com %s, estaremos a imprimir o segredo.
+
+Para executar esta estratégia, modificamos novamente o ficheiro "build_string.py":
+
+...
+
+Corremos os seguintes comandos:
+
+...
+
+E obtivemos o seguinte:
+
+...
+
 ##Tarefa 3.A
 
 ##Tarefa 3.B
