@@ -1,5 +1,30 @@
-O programa crasha porque causa do "%n". O "%n" recebe um argumento que deve ser um apontador para um int, mas em vez de imprimir qualquer coisa ele armazena o número de caracteres impressos até agora por esta chamada naquele local. No nosso caso escrevemos doze "%.8x", que vão lendo o conteúdo da stack. Depois o programa chega ao "%n" e como o conteúdo que está nesse local da stack não é um apontador para um int, o programa crasha. 
+##Tarefa 1
+
+Tal como diz no enunciado, começamos por escrever o seguinte comando:
+
+![No randomize Command](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_01.png)
+
+De seguida corremos o contentor docker(escrevendo `dcbuid` e `dcup`) e escrevemos no terminal o seguinte:
+
+![echo hello to the container](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_02.png)
+
+Obtendo:
+
+![echo hello to the container](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_03.png)
+
+De seguida corremos o programa em python, chamado "build_string.py" que nos é dado nos ficheiros do SEED Labs:
+
+![echo hello to the container](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_04.png)
+
+Ao correr isto a função "my_printf()" crasha como refere no enunciado:
+
+![echo hello to the container](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_05.png)
+
+O programa crasha por causa do "%n". O "%n" recebe um argumento que deve ser um apontador para um int, mas em vez de imprimir qualquer coisa ele armazena o número de caracteres impressos até ao momento. No nosso caso, primeiro escrevemos doze "%.8x", que vão lendo o conteúdo da stack. Depois o programa chega ao "%n" e como o conteúdo que está nesse local da stack não é um apontador para um int, o programa crasha. 
  
+
+##Tarefa 2.A
+
 Inicialmente tentamos escrever: 
 
 ![Primeiro echo](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_08.png)
@@ -29,4 +54,9 @@ Correndo obtivemos:
 
 ![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_14.png)
  
- 
+##Tarefa 2.B
+
+##Tarefa 3.A
+
+##Tarefa 3.B
+
