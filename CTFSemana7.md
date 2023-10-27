@@ -3,17 +3,27 @@
 Começamos por correr `checksec program`:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_0.png)
 
-Com isto percebemos que o endereços do programa são estáticos, logo se encontramos o endereç
+Com isto percebemos que existe um canário na stack(`Canary found`) e que a stack não permissões de execução(`NX enabled`), mas os endereços do programa são estáticos(`No PIE (0x8048000)`), logo como flag é uma variável global, se encontramos o endereço da flag no gdb, saberemos sempre qual será o endereço da flag.
 
 A analisar o "main.c" vimos que linha de código onde a vulnerabilidade se encontra é a linha 27, onde está escrito `printf(buffer);`, ou seja, o programa tem uma vulnerabilidade de "format string".
 
-A vulnerabilidade permite imprimir valores da stack. Com isto podemos aceder à variavel "flag" onde está guardada a nossa flag
+A vulnerabilidade permite imprimir valores da stack. Com isto podemos aceder à variável "flag" onde está guardada a nossa flag
 
-Qual é a funcionalidade que te permite obter a flag?
-Sabendo que a flag se encontra numa variável global ;) e como no checksec percebemos que o endereços do programa são estáticos, utiliza o gdb para descobrir o endereço de memória da variável onde se encontra a flag.
+Através do gdb conseguimos o endereço onde está guardada a flag:
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_01.png)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_02.png)
 
-Atrvés do gdb conseguimos o endreço onde está guardada a flag:
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_1.png)
+Através do "scanf()" poderemos inserir uma string com o endereço da flag, e a seguir podemos ler esse endereço com "%s" e assim ter acesso à flag.
+Para isso, fomos ver quantos "%x" precisamos de inserir para ter acesso que acabamos de escrever. Para isso corremos o seguinte programa:
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_03.png)
 
+E obtivemos:
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_04.png)
 
+Com isto podemos ver que o padrão "616161" aparece logo com o primeiro "%x". Ou seja, podemos colocar logo o "%s" para ler a flag.
+Corremos o seguinte programa para obter a flag localmente:
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_05.png)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_06.png)
 
+E corremos o mesmo programa mas com `LOCAL = FALSE` e assim conseguimos obter a flag no servidor:
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_07.png)
