@@ -45,8 +45,9 @@ Assim imprimindo o conteúdo dos primeiros 100 endereços da nossa stack atual. 
 E obtivemos: 
 
 ![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_12.png)
+![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_12_1.png)
 
-Aqui temos procuramos pelo padrão "61616161" corresponde ao início da string("aaaa") em hexadecimal. Fomos tentando diminuir o número de "%x" que escrevíamos no "build_string.py", e concluímos que necessitamos de colocar 63 "%x" antes de colocarmos o "%x" que irá ler a nossa string. Para comprovar alteramos o "build_string.py" para o seguinte: 
+Aqui temos procuramos pelo padrão "61616161" corresponde ao início da string("aaaa") em hexadecimal. Como o padrão 616161 tem o número 64, concluímos que necessitamos de colocar 63 "%x" antes de colocarmos o "%x" que irá ler a nossa string. Para comprovar alteramos o "build_string.py" para o seguinte: 
 
 ![build_string.py](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_13.png)
 
@@ -60,15 +61,15 @@ Sabemos que o segredo está guardado no endereço "0x080b4008", logo temos que e
 
 Para executar esta estratégia, modificamos novamente o ficheiro "build_string.py":
 
-...
+![build_string.py](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_15.png)
 
 Corremos os seguintes comandos:
 
-...
+![Correr build_string.py](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_11.png)
 
 E obtivemos o seguinte:
 
-...
+![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_16.png)
 
 ##Tarefa 3.A
 
