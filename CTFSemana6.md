@@ -6,15 +6,15 @@ Fomos redirecionados para a seguinte página:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/xss_csrf_2.PNG)
 De seguida fomos à página onde o administrador aceita ou não os pedidos:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/xss_csrf_3.PNG)
-Aqui, inspecionamos a página e vimos o codigo dos botões que o administrador deve clicar:
+Aqui, inspecionamos a página e vimos o código dos botões que o administrador deve clicar:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/xss_csrf_4.PNG)
 
-A ideia é forçar o administrador a clicar no botão para nos dar a flag através de xss, ou seja, inserindo codigo javascript na caixa de texto.
-Com isto, copiamos o codigo do botão de aceitar o pedido, retirando o disabled, e mudando o url da action, colocando o caminho completo, porque se não o fizessemos, iriamos ser redirecinados para a porta 5004, e mudamos o id do pedido para o id do novo pedido, resultando em:
+A ideia é forçar o administrador a clicar no botão para nos dar a flag através de xss, ou seja, inserindo código javascript na caixa de texto.
+Com isto, copiamos o código do botão de aceitar o pedido, retirando o disabled, e mudando o url da action, colocando o caminho completo, porque se não o fizéssemos, iriamos ser redirecionados para a porta 5004, e mudamos o id do pedido para o id do novo pedido, resultando em:
 
 `http://ctf-fsi.fe.up.pt:5005/request/ed6748362972777c957ca7f8495555b62bdee3aa/approve`
 
-Além disso, adicionamos um script javascript que clica automaticamente no butão, que acabamos de adicionar. O resultado foi o seguinte:
+Além disso, adicionamos um script javascript que clica automaticamente no botão, que acabamos de adicionar. O resultado foi o seguinte:
 ```html
 <form method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/ed6748362972777c957ca7f8495555b62bdee3aa/approve" role="form">     
     <div class="submit">                  
@@ -24,16 +24,16 @@ Além disso, adicionamos um script javascript que clica automaticamente no butã
 <script>document.getElementById("giveflag").click();</script>
 ```
 
-A seguir, inserimos o codigo que acabamos de escrever na caixa das justificações:
+A seguir, inserimos o código que acabamos de escrever na caixa das justificações:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/xss_csrf_5.PNG)
 
 E fomos redirecionados para a seguinte página:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/xss_csrf_6.PNG)
 
-Isto acontece porque o browser ao intrepetar o codigo anterior, clica autmaticamente no butão que adicionamos e somos redirecionados para a página de aprovar o pedido, mas como não temos premissões para entrar nesta página, aparece-nos uma mensagem de "Forbidden". Para resolver este problema temos que desligar o javascript do nosso browser:
+Isto acontece porque o browser ao interpetar o código anterior, clica automaticamente no botão que adicionamos e somos redirecionados para a página de aprovar o pedido, mas como não temos permissões para entrar nesta página, aparece-nos uma mensagem de "Forbidden". Para resolver este problema que desligamos o javascript do nosso browser:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/xss_csrf_7.PNG)
 
-Depois temos que ir para a página para ver a nossa justificação, que está no seguinte url:
+Depois fomos para a página para ver a nossa justificação, que está no seguinte url:
 
 `http://ctf-fsi.fe.up.pt:5004/request/ed6748362972777c957ca7f8495555b62bdee3aa`
 
