@@ -47,7 +47,7 @@ E obtivemos:
 ![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_12.png)
 ![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_12_1.png)
 
-Aqui temos procuramos pelo padrão "61616161" corresponde ao início da string("aaaa") em hexadecimal. Como o padrão 616161 tem o número 64, concluímos que necessitamos de colocar 63 "%x" antes de colocarmos o "%x" que irá ler a nossa string. Para comprovar alteramos o "build_string.py" para o seguinte: 
+Aqui temos procuramos pelo padrão "61616161" corresponde ao início da string("aaaa") em hexadecimal. Como o padrão "616161" tem o número 64, concluímos que necessitamos de colocar 63 "%x" antes de colocarmos o "%x" que irá ler a nossa string. Para comprovar alteramos o "build_string.py" para o seguinte: 
 
 ![build_string.py](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_13.png)
 
