@@ -1,6 +1,6 @@
 ## Processo utilizado para resolver o CTF da Semana 7
 
-###Desafio 1
+### Desafio 1
 
 Começamos por correr `checksec program`:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_0.png)
