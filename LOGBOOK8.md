@@ -1,1 +1,1 @@
-Admin'; delete from credential where Name = Ryan; -- 
+Admin'; delete from credential where Name = 'Ryan'; -- 
