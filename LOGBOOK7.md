@@ -1,4 +1,4 @@
-##Tarefa 1
+## Tarefa 1
 
 Tal como diz no enunciado, começamos por escrever o seguinte comando:
 
@@ -23,7 +23,7 @@ Ao correr isto a função "my_printf()" crasha como refere no enunciado:
 O programa crasha por causa do "%n". O "%n" recebe um argumento que deve ser um apontador para um int, mas em vez de imprimir qualquer coisa ele armazena o número de caracteres impressos até ao momento. No nosso caso, primeiro escrevemos doze "%.8x", que vão lendo o conteúdo da stack. Depois o programa chega ao "%n" e como o conteúdo que está nesse local da stack não é um apontador para um int, o programa crasha. 
  
 
-##Tarefa 2.A
+## Tarefa 2.A
 
 Inicialmente tentamos escrever: 
 
@@ -55,7 +55,7 @@ Correndo obtivemos:
 
 ![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_14.png)
  
-##Tarefa 2.B
+## Tarefa 2.B
 
 Sabemos que o segredo está guardado no endereço "0x080b4008", logo temos que escrever este endereço no inicio da string, e depois utilizando vários "%x" avaçamos os elementos na stack, até chegar ao início da string, onde está guardado o endereço do segredo. Lemos este endereço utilizando o "%s", que nos irá levar ao segredo. O "%s" recebe um apontador para o primeiro caracter de uma string e imprime essa string. Assim, ao lermos o endereço do segredo com %s, estaremos a imprimir o segredo.
 
@@ -71,7 +71,7 @@ E obtivemos o seguinte:
 
 ![Resultado](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_16.png)
 
-##Tarefa 3.A
+## Tarefa 3.A
 
-##Tarefa 3.B
+## Tarefa 3.B
 
