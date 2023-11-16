@@ -22,6 +22,8 @@ De seguida para testar ainda mais o mysql decidimos fazer a seguinte query bási
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_06.png)
 
 ## Task 2.1
+Sabemos que o lab é de sql injection. Como vimos no passo anterir o username do administrador é
+
 ![imagem do input introduzido](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_07.png)
 ![imagem depois de entrar na conta do Admin](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_07.png)
 
