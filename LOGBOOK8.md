@@ -11,11 +11,14 @@ De seguida abrimos uma shell no docker container da base de dados, para podermos
 
 
 ## Task 1
-
+Na shell que abrimos anteriormente corremos os comandos apresentados no enunciado:
 
 ![mysql -u root -pdees](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_045.png)
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_04.png)
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_05.png)
+
+De seguida para testar ainda mais o mysql decidimos fazer a seguinte query básica:
+
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_06.png)
 
 ## Task 2.1
