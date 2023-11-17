@@ -56,7 +56,7 @@ Fizemos isto porque ...
 Ao submeter obtivemos a seguinte resposta:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_12.png)
 
-Fomos investigar sobre o porquê de isto acontecer e na documentação do php encontramos:
+Fomos investigar sobre o porquê de isto acontecer. Na documentação do php encontramos na sequinte página que a função mysqli::query() múltiplas declarações numa linha só, de modo a evitar ataques de SQL Injection.
 https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
