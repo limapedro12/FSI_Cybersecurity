@@ -24,7 +24,7 @@ De seguida para testar ainda mais o MySQL decidimos fazer a seguinte query bási
 Claro, claro! Vamos lá preencher esses espaços em branco com as explicações adequadas:
 
 ### Task 2.1
-Sabemos que temos que executar um ataque SQL Injection. No passo anterior vimos que o username do administrador é `Admin`, e ao analisar o codigo em `unsafe_home.php` vimos que as linhas que executam a query de login são suscetiveis a um ataque de SQL Injection:
+Sabemos que temos que executar um ataque SQL Injection. No passo anterior vimos que o username do administrador é `Admin`, e ao analisar o codigo em `unsafe_home.php` vimos que as linhas que executam a query de login são suscetíveis a um ataque de SQL Injection:
 
 ![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
@@ -64,13 +64,13 @@ Tentamos alterar a base de dados deixando a caixa de texto da password vazia e c
 Admin'; delete from credential where Name = 'Ryan'; --
 ```
 
-Fizemos isto com a intenção de eliminar registros da base de dados. No entanto, ao submeter, recebemos a seguinte resposta:
+Fizemos isto com a intenção de eliminar registos da base de dados. No entanto, ao submeter, recebemos a seguinte resposta:
 
 ![imagem de erro](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_12.png)
 
 Fomos investigar sobre o porquê de isto acontecer e descobrimos que a função `mysqli::query()`, utilizada na aplicação web fornecida, não permite múltiplas declarações numa única linha, a fim de prevenir ataques de SQL Injection, como podemos ver na [documentação do PHP](https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php):
 
-![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_14.png)
+![documentação php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_14.png)
 ![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
 
