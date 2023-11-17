@@ -6,11 +6,11 @@ Começamos por analisar o codigo fornecido no enunciado e vimos que o codigo é 
 
 De seguida introduzimos o mesmo que introduzimos na task 2 do Guião da Semana 8, ou seja, username `Admin; -- ` e password vazia. A introduzir isto obtivemos a seguinte mensagem:
 
-![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_5.png)
+![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_05.png)
 
 Por isso introduzimos uma password qualquer, que neste caso foi `1234`:
 
-![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_6.png)
+![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_06.png)
 
 Com isto não conseguimos entrar na página pretendida. Pensamos então que a o utilizador poderia estar tudo em letras minusculas, como é habitual:
 
