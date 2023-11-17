@@ -53,7 +53,7 @@ Chegando à conclusão que precisamos ainda de imprimir 48871 bytes, fazendo iss
 
 Correndo o script:
 
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_10.png)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/fs_ctf_11.png)
 
 Verificamos que o programa imprime o garbage address, mas reescreve o endereço da key, ativando assim a backdoor. Fazendo `cat flag.txt`, obtemos assim a flag.
 
