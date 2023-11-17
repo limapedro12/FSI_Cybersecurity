@@ -12,7 +12,7 @@ Por isso introduzimos uma password qualquer, que neste caso foi `1234`:
 
 ![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_06.png)
 
-Com isto não conseguimos entrar na página pretendida. Pensamos então que a o utilizador poderia estar tudo em letras minusculas, como é habitual:
+Com isto não conseguimos entrar na página pretendida. Pensamos então que a o utilizador poderia estar tudo em letras minusculas, como é mais habitual:
 
 ![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_3.png)
 
