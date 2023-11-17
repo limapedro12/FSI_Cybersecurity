@@ -57,4 +57,4 @@ https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php
 
 
 ## Task 3
-Nota: Colocar prints do que foi feito ;)
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/blob/main/images/SQLI1.PNG)
