@@ -75,13 +75,17 @@ Podemos confirmar que deu certo com a conta do admin verificando na lista de uti
 ## Task 3.3
 
 Para modificar a password de Boby primeiro precisamos de tranformar a nova password ('1234') para a forma SHA1, para isso usamos um ficheiro php:
+
 ![ChangePassword](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI8.PNG)
 
 E obtivemos o seguinte conjunto de caracteres:
+
 ![ChangePassword](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI6.PNG)
 
 A seguir mudados a password usando o seguinte método de SQL injection: 
+
 ![ChangePassword](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI7.PNG)
 
 Por fim conseguimos fazer login com na conta de Boby com o nome 'Boby' e password '1234' e alterar algumas das suas informações como pedido na task:
-![ChangePassword](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI10.PNG)
+
+![ChangePassword](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQL10.PNG)
