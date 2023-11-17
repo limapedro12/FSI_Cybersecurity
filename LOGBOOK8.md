@@ -24,7 +24,7 @@ De seguida para testar ainda mais o MySQL decidimos fazer a seguinte query bási
 Claro, claro! Vamos lá preencher esses espaços em branco com as explicações adequadas:
 
 ### Task 2.1
-Sabemos que temos que executar um ataque SQL Injection. No passo anterior vimos que o username do administrador é `Admin`, e ao analisar o codigo em `unsafe_home.php` vimos que as linhas que executam a query de login são suscetíveis a um ataque de SQL Injection:
+Sabemos que temos que executar um ataque SQL Injection. No passo anterior vimos que o username do administrador é `Admin`, e ao analisar o codigo em `unsafe_home.php` vimos que as linhas que executam a query de login são suscetíveis a um ataque de SQL Injection, uma vez que não utiliza prepared statements, nem sanitização de inpu:
 
 ![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
