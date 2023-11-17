@@ -73,5 +73,26 @@ E obtivemos o seguinte:
 
 ## Tarefa 3.A
 
+Nesta task, temos como objetivo alterar o valor da "target variable", a partir do output que obtemos do servidor, conseguimos saber o seu address:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_17.png)
+
+Sendo ele: 0x080e5068.
+
+Nós sabemos que conseguirmos aceder ao nosso input na stack, como pudemos ver nas tasks anteriores. O que temos a fazer é aceder ao nosso input na stack, que vai ter de ser o address da variable, e com o %n, que usamos também em tasks anteriores para crashar o programa, alterar o valor da variável.
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_18.png)
+
+Alterando o "number" para o endereço da variável, e depois fazendo %x*63 + %n, o %n refere-se já ao endereço da variável, alterando o valor da mesma com o número de bytes impressos até aí. Executamos o script que nos dá o badfile:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_19.png)
+
+E em seguida enviamos o badfile para o servidor correr. Como podemos observar o valor da target variable foi alterado com sucesso:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_20.png)
+
+
+
 ## Tarefa 3.B
 
+Esta task tem o mesmo conceito que a anterior, no entanto temos que alterar para um valor específico, sendo ele: 0x5000, que traduz para 20480 em decimal.
