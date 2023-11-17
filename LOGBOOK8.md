@@ -21,43 +21,57 @@ De seguida para testar ainda mais o MySQL decidimos fazer a seguinte query bási
 
 ![tabela credential](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_06.png)
 
-## Task 2.1
-Sabemos que temos que executar uma SQL Injection. No passo anterior que o username do administrador é `Admin`, por isso introduzimos `Admin'; -- ` na caixa de texto do username e não intruduzimos nada na caixa de texto da password, porque...
+Claro, claro! Vamos lá preencher esses espaços em branco com as explicações adequadas:
+
+### Task 2.1
+Sabemos que temos que executar um ataque SQL Injection. No passo anterior vimos que o username do administrador é `Admin`, e ao analisar o codigo em `unsafe_home.php` vimos que as linhas que executam a query de login são suscetiveis a um ataque de SQL Injection:
+
+![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
+
+Com esta informação, para executar o ataque temos que, apos inserir o username do utilizador pretendido, encerrar a string inserida na query com `'`, encerrar a declaração SQL com `;` e adicionar um comentário SQL `--` para comentar a password esperada pelo sistema.
+Assim, introduzimos `Admin'; -- ` na caixa de texto do username e não introduzimos nada na caixa de texto da password.
 
 ![imagem do input introduzido](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_07.png)
 
-E assim consequimos acesso à página de administrador:
+Assim, conseguimos acesso à página de administrador:
 
-![imagem da pagina de administrador](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_08.png)
+![imagem da página de administrador](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_08.png)
 
-## Task 2.2
+### Task 2.2
+Em seguida, procedemos a executar o mesmo ataque, mas através da shell. O enunciado indica-nos que podemos fazer um pedido HTTP GET ao servidor para obter o HTML da página de um determinado utilizador, usando o comando:
 
-De seguida procedemos a executar o mesmo ataque mas através da shell. No enunciado é nos dito que podemos fazer um pedido HTTP GET ao servidor para obter o HTML da página de um determinado utilizador, correndo o comando:
 ```
 curl 'www.seed-server.com/unsafe_home.php?username=alice&Password=11'
 ```
-Com isto substituimos o username e a password do comando dado pelos utilizados na task 2.1 (username `Admin'; -- ` e password vazia). Para fazer isto temos que codificar o espaço para "%20" e o apóstrofo(') por "%27", porque ...
-Depois destas alterações obtemos o seguinte comando:
+
+Substituímos o username e a password do comando dado pelos usados na task 2.1 (username Admin'; -- e password vazia). Para isso, codificamos os espaços para "%20" e o apóstrofo(') por "%27", porque o URL não pode conter estes caracteres diretamente, já que certos caracteres, como espaços e apóstrofos, podem causar problemas na interpretação do URL, levando a erros na requisição ou até mesmo à interpretação incorreta dos parâmetros enviados. Portanto, a codificação é necessária para garantir que o URL seja interpretado corretamente pelo servidor, evitando falhas na requisição e assegurando que o ataque de SQL Injection seja executada como pretendido.
+
+Depois dessas alterações, obtemos o seguinte comando:
+
 ```
 curl "www.seed-server.com/unsafe_home.php?username=Admin%27%20;%20--%20"
 ```
-E corremos o comando:
 
-![fomulario de login](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_11.png)
-![imagem da pagina de administrador](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_10.png)
+E ao correr o comando:
 
-## Task 2.3
-Tentamos alterar a base de dados colocando deixando a a caixa de texto da passsword vazia e colocando como do username:
+![HTML recebido parte 1](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_11.png)
+![HTML recebido parte 2](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_10.png)
+
+### Task 2.3
+Tentamos alterar a base de dados deixando a caixa de texto da password vazia e colocando como username:
+
 ```
 Admin'; delete from credential where Name = 'Ryan'; --
-``` 
-Fizemos isto porque ...
+```
 
-Ao submeter obtivemos a seguinte resposta:
+Fizemos isto com a intenção de eliminar registros da base de dados. No entanto, ao submeter, recebemos a seguinte resposta:
+
 ![imagem de erro](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_12.png)
 
-Fomos investigar sobre o porquê de isto acontecer. Na [documentação do php](https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php) encontramos que a função mysqli::query(), utilizada na aplicação web fornecida, não múltiplas declarações numa linha só, de modo a evitar ataques de SQL Injection.
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
+Fomos investigar sobre o porquê de isto acontecer e descobrimos que a função `mysqli::query()`, utilizada na aplicação web fornecida, não permite múltiplas declarações numa única linha, a fim de prevenir ataques de SQL Injection, como podemos ver na [documentação do PHP](https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php):
+
+![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_14.png)
+![imagem de unsafe_home.php](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
 
 ## Task 3.1
