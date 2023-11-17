@@ -22,7 +22,7 @@ De seguida para testar ainda mais o MySQL decidimos fazer a seguinte query bási
 ![tabela credential](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_06.png)
 
 ## Task 2.1
-Sabemos que temos que executar SQL injection. No passo anterior que o username do administrador é `Admin`, por isso introduzimos `Admin'; -- ` na caixa de texto do username e não intruduzimos nada na caixa de texto da password, porque...
+Sabemos que temos que executar uma SQL Injection. No passo anterior que o username do administrador é `Admin`, por isso introduzimos `Admin'; -- ` na caixa de texto do username e não intruduzimos nada na caixa de texto da password, porque...
 
 ![imagem do input introduzido](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_07.png)
 
@@ -32,11 +32,11 @@ E assim consequimos acesso à página de administrador:
 
 ## Task 2.2
 
-De seguida procedemos a executar o mesmo ataque mas através da shell. No enunciado é nos dito que podemos podemos fazer um pedido HTTP GET ao servidor para obter o HTML da pagina de um determinado utilizador, correndo o comando:
+De seguida procedemos a executar o mesmo ataque mas através da shell. No enunciado é nos dito que podemos fazer um pedido HTTP GET ao servidor para obter o HTML da página de um determinado utilizador, correndo o comando:
 ```
 curl 'www.seed-server.com/unsafe_home.php?username=alice&Password=11'
 ```
-Com isto subtituimos o username e a password do comando dado pelos utilizados na task 2.1(username `Admin'; -- ` e password vazia). Para fazer isto temos que codificar o espaço para "%20" e o apóstrofo(') por "%27", porque ...
+Com isto substituimos o username e a password do comando dado pelos utilizados na task 2.1 (username `Admin'; -- ` e password vazia). Para fazer isto temos que codificar o espaço para "%20" e o apóstrofo(') por "%27", porque ...
 Depois destas alterações obtemos o seguinte comando:
 ```
 curl "www.seed-server.com/unsafe_home.php?username=Admin%27%20;%20--%20"
@@ -54,10 +54,9 @@ Admin'; delete from credential where Name = 'Ryan'; --
 Fizemos isto porque ...
 
 Ao submeter obtivemos a seguinte resposta:
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_12.png)
+![imagem de erro](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_12.png)
 
-Fomos investigar sobre o porquê de isto acontecer. Na documentação do php encontramos na sequinte página que a função mysqli::query() múltiplas declarações numa linha só, de modo a evitar ataques de SQL Injection.
-https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php
+Fomos investigar sobre o porquê de isto acontecer. Na [documentação do php](https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php) encontramos que a função mysqli::query(), utilizada na aplicação web fornecida, não múltiplas declarações numa linha só, de modo a evitar ataques de SQL Injection.
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
 
