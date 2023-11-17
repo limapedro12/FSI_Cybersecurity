@@ -1,6 +1,6 @@
 ## Processo utilizado para resolver o CTF da Semana 8
 
-Começamos por analisar o codigo fornecido no enunciado e vimos que o codigo é suscetivel a ataque de SQL Injection, uma vez que não utiliza prepared statements nem sanitização de input:
+Começamos por analisar o codigo fornecido no enunciado e vimos que o codigo é suscetivel a ataque de SQL Injection, uma vez que não utiliza prepared statements, nem sanitização de input:
 
 ![imagem](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_sqli_1.png)
 
