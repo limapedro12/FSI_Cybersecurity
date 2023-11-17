@@ -95,4 +95,18 @@ E em seguida enviamos o badfile para o servidor correr. Como podemos observar o 
 
 ## Tarefa 3.B
 
-Esta task tem o mesmo conceito que a anterior, no entanto temos que alterar para um valor específico, sendo ele: 0x5000, que traduz para 20480 em decimal.
+Esta task tem o mesmo conceito que a anterior, no entanto temos que alterar para um valor específico, sendo ele: 0x5000, que traduz para 20480 em decimal. Ao dividir 20480/63 = 325, por efeitos de simplicidade metemos o seguinte:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_21.png)
+
+Reparamos então que o valor da variável foi mudado para:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_22.png)
+
+Como necessitamos de ajustar o valor, é necessário adicionar um %x em que possamos definir um número mais exato de bytes a adicionar. Chegamos à conclusão que este era o valor para que a variável fosse alterada corretamente:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_23.png)
+
+Analisando o código podemos ver que reduzimos de 63 para 62 %x, e em seguida metemos o %x que faltava, mas com um valor de bytes ajustado para que desse 0x5000:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_24.png)
