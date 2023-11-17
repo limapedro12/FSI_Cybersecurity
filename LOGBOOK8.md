@@ -56,5 +56,15 @@ https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
 
-## Task 3
-![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI1.PNG)
+## Task 3.1
+Como utilizador Alice tentamos mudar o seu salário usando uma SQL injection usando a opção de Edit Profile da seguinte forma: 
+![ChangeSalary](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI1.PNG)
+Como se pode ver abaixo tivemos sucesso e o salário foi alterado para 2000000:
+![ChangeSalary](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI2.PNG)
+
+## Task 3.2
+
+Para modificar o salário de Boby usamos o mesmo método que a task 3.1 mas desta vez da seguinte forma:
+![ChangeSalary](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI4.PNG)
+Podemos confirmar que deu certo com a conta do admin verificando na lista de utilizadores que Boby tem agora salário igual a 1:
+![ChangeSalary](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/SQLI5.PNG)
