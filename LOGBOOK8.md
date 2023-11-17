@@ -47,12 +47,17 @@ E corremos o comando:
 ![imagem da pagina de administrador](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_10.png)
 
 ## Task 2.3
-Tentamos alterar a base de dados correndo ...
+Tentamos alterar a base de dados colocando deixando a a caixa de texto da passsword vazia e colocando como do username:
 ```
 Admin'; delete from credential where Name = 'Ryan'; --
 ``` 
-https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php
+Fizemos isto porque ...
+
+Ao submeter obtivemos a seguinte resposta:
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_12.png)
+
+Fomos investigar sobre o porquê de isto acontecer e na documentação do php encontramos:
+https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php
 ![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sqli_13.png)
 
 
