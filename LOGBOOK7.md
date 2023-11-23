@@ -73,5 +73,40 @@ E obtivemos o seguinte:
 
 ## Tarefa 3.A
 
+Nesta task, temos como objetivo alterar o valor da "target variable", a partir do output que obtemos do servidor, conseguimos saber o seu address:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_17.png)
+
+Sendo ele: 0x080e5068.
+
+Nós sabemos que conseguirmos aceder ao nosso input na stack, como pudemos ver nas tasks anteriores. O que temos a fazer é aceder ao nosso input na stack, que vai ter de ser o address da variable, e com o %n, que usamos também em tasks anteriores para crashar o programa, alterar o valor da variável.
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_18.png)
+
+Alterando o "number" para o endereço da variável, e depois fazendo %x*63 + %n, o %n refere-se já ao endereço da variável, alterando o valor da mesma com o número de bytes impressos até aí. Executamos o script que nos dá o badfile:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_19.png)
+
+E em seguida enviamos o badfile para o servidor correr. Como podemos observar o valor da target variable foi alterado com sucesso:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_20.png)
+
+
+
 ## Tarefa 3.B
 
+Esta task tem o mesmo conceito que a anterior, no entanto temos que alterar para um valor específico, sendo ele: 0x5000, que traduz para 20480 em decimal. Ao dividir 20480/63 = 325, por efeitos de simplicidade metemos o seguinte:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_21.png)
+
+Reparamos então que o valor da variável foi mudado para:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_22.png)
+
+Como necessitamos de ajustar o valor, é necessário adicionar um %x em que possamos definir um número mais exato de bytes a adicionar. Chegamos à conclusão que este era o valor para que a variável fosse alterada corretamente:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_23.png)
+
+Analisando o código podemos ver que reduzimos de 63 para 62 %x, e em seguida metemos o %x que faltava, mas com um valor de bytes ajustado para que desse 0x5000:
+
+![image](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/format_string_24.png)
