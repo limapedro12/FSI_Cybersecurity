@@ -133,16 +133,27 @@ Concluindo, a chave obtida foi:
 
 ## Task3
 
+Aqui podemos ver a imagem original que temos que encriptar:
 ![Imagem Original](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_original_image.png)
 
-![Comandos para a Encriptação em CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image.png)
-
+Para encriptar a imagem usamos o mesmo comando da Task 2 (`openssl`). Começamos por encriptar a imagem anterior usando CBC(Cipher Block Chaining) usando "c0decaca0" como chave e "0102030405060708" como initialization vector:
+![Comandos para a Encriptação em CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_1.png)
 ![Comandos para podermos ver a imagem encriptada](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_2.png)
 
-![Imagem Encriptada com CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image2.png)
+E obtivemos:
 
+![Imagem Encriptada com CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image.png)
+
+O algortimo de Cipher Block Chaining divide o ficheiro em blocos de tamanho igual ao initialization vector. De seguida, faz um XOR com o initialization vector e o primeiro bloco e encripta o resultado com a chave fornecida. Isto resulta no primeiro bloco da mensagem encriptada. Depois pega nesse bloco e faz um XOR com o segundo bloco da mensagem original, encripta o resultado com a chave e assim obtém o segundo bloco da mensagem encriptada. Continuamos com este processo até não haver mais blocos para encriptar. No ultimo bloco é sempre adicionado padding, ou seja, adiciona-se sempre caracteres ao ultimo bloco de modo a que este fique com o mesmo tamanho que os outros.
+
+Como o algroritmo utiliza o bloco encriptado anterior para encriptar o seguinte, cada conjunto de pixeis é encriptado de forma diferente e por isso não conseguimos ver nenhum padrão na imagem observada.
+
+Encriptamos novamente mas desta vez usando ECB(Electronic Code Book) usando "c0decaca0" como chave:
 ![Comandos para a Encriptação em ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_3.png)
 
 ![Comandos para podermos ver a imagem encriptada](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_4.png)
 
-![Imagem Encriptada com ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_original_image.png)
+E obtivemos:
+![Imagem Encriptada com ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image2.png)
+
+O algortimo de Electronic Code Book divide o ficheiro em blocos de tamanho igual ao initialization vector e adiciona padding ao ultimo bloco apenas se for necessário. De seguida, encripta cada bloco com a chave, de forma independente, ou seja, cada conjunto de pixeis é encriptado da mesma maneira, e por isso conseguimos ver na mesma o formato da imagem original, na imagem encriptada.
