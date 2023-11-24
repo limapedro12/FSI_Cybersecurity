@@ -97,7 +97,7 @@ E obtivemos a mensagem decifrada:
 
 ![Mensagem final](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry13.PNG)
 
-Chave:
+Concluindo, a chave obtida foi:
 ```
 'a' -> 'C'
 'b' -> 'F'
