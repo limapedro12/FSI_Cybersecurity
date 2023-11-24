@@ -131,5 +131,18 @@ Concluindo, a chave obtida foi:
 ## Task 2
 
 
+## Task3
 
+![Imagem Original](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_original_image.png)
 
+![Comandos para a Encriptação em CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image.png)
+
+![Comandos para podermos ver a imagem encriptada](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_2.png)
+
+![Imagem Encriptada com CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image2.png)
+
+![Comandos para a Encriptação em ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_3.png)
+
+![Comandos para podermos ver a imagem encriptada](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_4.png)
+
+![Imagem Encriptada com ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_original_image.png)
