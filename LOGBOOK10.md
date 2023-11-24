@@ -28,41 +28,62 @@ Depois abrimos a [página da wikipedia sobre Bigramas](https://en.wikipedia.org/
 Voltamos a ver os bigramas e trigramas mais comuns, mas começou a ficar mais difícil de tirar conclusões. Por isso, abrimos o ficheiro `out.txt` e reparamos que algumas palavras faltavam 1 ou 2 letras e com isso conseguíamos inferir as letras ainda por desencriptar: 
 
 Reparamos que "TzRN" se parecia "TURN", por isso assumimos que 'z' corresponde a 'U'.
+
+
 Reparamos que "RIrHT" se parecia "RIGHT", por isso assumimos que 'r' corresponde a 'G'.
+
 Reparamos que "AbTER" se parecia "AFTER", por isso assumimos que 'b' corresponde a 'F'.
+
 E reparamos que "THIq" se parecia "THIS", por isso assumimos que 'q' corresponde a 'S'.
+
 Aqui começou a ficar mais difícil continuar com este processo e por isso corremos o comando novamente, mas com as novas substituições: 
 
 ![tr 'nyvxtmuhzrbq' 'ETAOHINRUGFS' <in.txt> out.txt](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry7.PNG)
 
 Abrimos novamente o ficheiro `out.txt` e continuamos com o mesmo processo:
+
 Reparamos que "AgOUT" se parecia "ABOUT", por isso assumimos que 'g' corresponde a 'O'.
+
 Reparamos que "iONG" se parecia "LONG", por isso assumimos que 'i' corresponde a 'L'.
+
 Corremos o comando novamente, mas com as novas substituições:
 
 ![tr 'nyvxtmuhzrbqgi' 'ETAOHINRUGFSBL' <in.txt> out.txt](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry8.PNG)
 
 Abrimos novamente o ficheiro `out.txt` e continuamos com o mesmo processo:
+
 Reparamos que "SURROUNpING" se parecia "SURROUNDING", por isso assumimos que 'p' corresponde a 'D'.
+
 Reparamos que "jUESTION" se parecia "QUESTION", por isso assumimos que 'j' corresponde a 'Q'.
+
 Reparamos que "SEkUAL" se parecia "SEXUAL", por isso assumimos que 'k' corresponde a 'X'.
+
 Reparamos que "HARRASScENT" se parecia "HARRASSMENT", por isso assumimos que 'c' corresponde a 'M'.
+
 E reparamos que "aOUNTRd" se parecia "COUNTRY", por isso assumimos que 'a' corresponde a 'C' e 'd' corresponde a 'Y'.
+
 Corremos o comando novamente, mas com as novas substituições:
 
 ![tr 'nyvxtmuhzrbqgipjkcad' 'ETAOHINRUGFSBLDQXMCY' <in.txt> out.txt](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry9.PNG)
 
 Abrimos novamente o ficheiro `out.txt` e continuamos com o mesmo processo:
+
 Reparamos que "lHICH" se parecia "WHICH", por isso assumimos que 'l' corresponde a 'W'.
+
 Reparamos que "ACTIfISM" se parecia "ACTIVISM", por isso assumimos que 'f' corresponde a 'V'.
+
 Reparamos que "eOLITICS" se parecia "POLITICS", por isso assumimos que 'e' corresponde a 'P'.
+
 Corremos o comando novamente, mas com as novas substituições:
 
 ![tr 'nyvxtmuhzrbqgipjkcadlfe' 'ETAOHINRUGFSBLDQXMCYWVP' <in.txt> out.txt](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry10.PNG)
 
 Abrimos novamente o ficheiro `out.txt` e continuamos com o mesmo processo:
+
 Reparamos que "THANsS" se parecia "THANKS", por isso assumimos que 's' corresponde a 'K'.
+
 Reparamos que "oUST" se parecia "JUST", por isso assumimos que 'o' corresponde a 'J'.
+
 Corremos o comando novamente, mas com as novas substituições:
 
 ![tr 'nyvxtmuhzrbqgipjkcadlfeso' 'ETAOHINRUGFSBLDQXMCYWVPKJ' <in.txt> out.txt](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry11.PNG)
