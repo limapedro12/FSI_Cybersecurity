@@ -77,31 +77,57 @@ E obtivemos a mensagem decifrada:
 ![Mensagem final](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry13.PNG)
 
 Chave:
+
 'a' -> 'C'
+
 'b' -> 'F'
+
 'c' -> 'M'
+
 'd' -> 'Y'
+
 'e' -> 'P'
+
 'f' -> 'V'
+
 'g' -> 'O'
+
 'h' -> 'R'
+
 'i' -> 'L'
+
 'j' -> 'Q'
+
 'k' -> 'X'
+
 'l' -> 'W'
+
 'm' -> 'I'
+
 'n' -> 'E'
+
 'o' -> 'J'
+
 'p' -> 'D'
+
 'q' -> 'S'
+
 'r' -> 'G'
+
 's' -> 'K'
+
 't' -> 'H'
+
 'u' -> 'N'
+
 'v' -> 'A'
+
 'w' -> 'Z'
+
 'x' -> 'O'
+
 'y' -> 'T'
+
 'z' -> 'U'
 
 
