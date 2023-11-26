@@ -34,7 +34,7 @@ Nesta secção temos o loop, que está por default infinito, até a condição �
 
 ![condition](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_7.png)
 
-Nesta parte do código o que estamos a fazer é verificar se adivinhamos a key. Começamos por tentar converter a suposta mensagem desencriptada que obtivemos acima para utf-8, para passarmos de bits para uma string. 
+Nesta parte do código o que estamos a fazer é verificar se adivinhamos a key. Começamos por tentar converter a suposta mensagem desencriptada que obtivemos acima para utf-8, para passarmos de bytes para uma string. 
 
 Um problema que ocorre ao tentarmos fazer isto é que muitas das vezes a mensagem desencriptada não vai estar no formato necessário para conseguirmos passar de bits para utf-8, então temos de fazer um try/except, em que se gerar um Unicode Decode Error, simplesmente ignora a mensagem e passa para a próxima key.
 
