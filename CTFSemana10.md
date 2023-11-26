@@ -28,7 +28,7 @@ Passando à explicação do script:
 
 ![initkey](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_5.png)
 
-Começamos com a chave inicial, que é similar ao que acontece na função gen(), só que aqui pretendemos ter todos os bytes incializados a 0, logo multiplicamos `b'\x00` por KEYLEN, e ficamos com todos os bytes da chave a 0, depois temos que passar a chave de bytearray para bytes.
+Começamos com a chave inicial, que é similar ao que acontece na função gen(), só que aqui pretendemos ter todos os bytes incializados a 0, logo multiplicamos `b'\x00'` por KEYLEN, e ficamos com todos os bytes da chave a 0, depois temos que passar a chave de bytearray para bytes.
 
 ![desencript](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_6.png)
 
