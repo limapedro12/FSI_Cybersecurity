@@ -1,6 +1,6 @@
 ## Processo utilizado para resolver o CTF da Semana 10
 
-Começamos por investigar o código dado no ficheriro `cipherspec.py` para perceber a funcionalidade do mesmo:
+Começamos por investigar o código dado no ficheiro `cipherspec.py` para perceber a funcionalidade do mesmo:
 
 ![codigo](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_2.png)
 
@@ -28,11 +28,11 @@ Passando à explicação do script:
 
 ![initkey](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_5.png)
 
-Começamos com a chave inicial, que é similar ao que acontece na função gen(), só que aqui pretendemos ter todos os bytes incializados a 0, logo multiplicamos `b'\x00'` por KEYLEN, e ficamos com todos os bytes da chave a 0, depois temos que passar a chave de bytearray para bytes.
+Começamos com a chave inicial, que é similar ao que acontece na função gen(), só que aqui pretendemos ter todos os bytes inicializados a 0, logo multiplicamos `b'\x00'` por KEYLEN, e ficamos com todos os bytes da chave a 0, depois temos que passar a chave de bytearray para bytes.
 
 ![desencript](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_6.png)
 
-Nesta secção temos o loop, que corre infinitamente, até a condição à frente demonstrada o quebre. Dentro dete ciclo while, definimos o nonce e a mensagem ecriptada que nos foram dados acima. Como nas funções os argumentos são recebidos em hexadecimal temos que passar os de hexadecimal para bytes. Depois chamamos a função dec, de modo a tentar desencriptar a mensagem com a chave atual, e assim testar se esta é a chave correta.
+Nesta secção temos o loop, que corre infinitamente, até a condição à frente demonstrada o quebre. Dentro deste ciclo while, definimos o nonce e a mensagem encriptada que nos foram dados acima. Como nas funções os argumentos são recebidos em hexadecimal temos que passar os de hexadecimal para bytes. Depois chamamos a função dec, de modo a tentar desencriptar a mensagem com a chave atual, e assim testar se esta é a chave correta.
 
 ![condition](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_7.png)
 
@@ -40,17 +40,17 @@ Nesta parte do código o que estamos a fazer é verificar se adivinhamos a chave
 
 Um problema que ocorre ao tentarmos fazer isto é que muitas das vezes a mensagem desencriptada não está no formato necessário para conseguirmos passar de bytes para utf-8, então temos de fazer um try/except, em que caso surja um Unicode Decode Error, simplesmente ignora a mensagem e passa para a próxima chave.
 
-Se não ocorrer nenhum erro, verificamos se a string começa por "flag", para termos a certeza que encontramos a chave correta, e damos print à flag.
+Se não ocorrer nenhum erro, verificamos se a string começa por "flag", para termos a certeza que encontramos a chave correta, e damos print à "flag".
 
 Se não for a chave correta, imprimimos a chave só para efeitos de ver o nosso progresso, e depois invocamos a função "nextKey(key)", que incrementa a chave em 1.
 
 ![nextKey](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_8.png)
 
-Para incrementarmos a key, é necessário passar para inteiro, e depois de volta para bytes. 
+Para incrementarmos a chave, é necessário passar para inteiro, e depois de volta para bytes. 
 
-Para passar de bytes para inteiro usamos o método `int.from_bytes(key, 'big')`, que converte os o conjunto de bytes dado em inteiro em big-endian order, que significa que o byte mais significativo está no ínicio da byte array, o oposto de little-endian, que foi o que usámos na ctf da format-string, em que nos interessava alterar a ordem dos bytes.
+Para passar de bytes para inteiro usamos o método `int.from_bytes(key, 'big')`, que converte os o conjunto de bytes dado em inteiro em big-endian order, que significa que o byte mais significativo está no início da byte array, o oposto de little-endian, que foi o que usámos na ctf da format-string, em que nos interessava alterar a ordem dos bytes.
 
-Prosseguindo, após passar para inteiro, incrementamos a variável auxiliar em 1, e depois voltamos a tornar o int em bytes, com o comprimento da key que nos foi dada inicialmente (para saber o número de 0 que temos que acrescentar no inicio).
+Prosseguindo, após passar para inteiro, incrementamos a variável auxiliar em 1, e depois voltamos a tornar o int em bytes, com o comprimento da chave que nos foi dada inicialmente (para saber o número de 0 que temos que acrescentar no início).
 
 Correndo o script, esperamos alguns minutos, e obtemos a flag com sucesso:
 
