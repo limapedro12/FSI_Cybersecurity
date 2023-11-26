@@ -4,21 +4,15 @@ Começamos por investigar o código dado no ficheriro `cipherspec.py` para perce
 
 ![codigo](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_2.png)
 
-#### Como consigo usar esta ciphersuite para cifrar e decifrar dados?
-
 Uma ciphersuite é o conjunto de algoritmos utilizado para manter uma comunicação segura, neste caso, para encriptar e desencriptar uma mensagem.
 
 No código dado contém uma ciphersuite composta por 3 funções: gen(), que é usada para gerar uma chave aleatória; enc(k, m, nonce), que é utiliza o algoritmo AES-CTR para encriptar a mensagem "m", com uma chave "k", obtida através da função "gen", e com um "nonce"; dec(k, c, nonce), que é usada para desencriptar a mensagem "c" e retornar a mensagem em bytes.
-
-#### Como consigo fazer uso da vulnerabilidade que observei para quebrar o código?
 
 Analisamos o código da função "gen" de modo a encontrar a vulnerabilidade:
 
 ![keygen](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/ctf_ce_1.png)
 
 Olhando para esta função que gera a chave de encriptação, conseguimos ver que a chave é vulnerável a ataques de brute-force. A chave começa por ter 13 bytes definidos como 0, e depois 3 bytes são aleatórios, ou seja, se tentarmos um ataque brute-force só tinhamos que verificar no máximo: 3\*8 = 24 bits, 2^24 = 16777216 combinações, em vez do suposto número de combinações se a chave fosse realmente segura que seria 16\*8 = 128 bits, 2^128 = 3.4028237e+38 combinações.
-
-#### Como consigo automatizar este processo, para que o meu ataque saiba que encontrou a flag?
 
 Fazendo `nc ctf-fsi.fe.up.pt 6003`, obtemos a mensagem encriptada e o respetivo nonce:
 
