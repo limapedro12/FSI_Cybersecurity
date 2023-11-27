@@ -130,7 +130,7 @@ Concluindo, a chave obtida foi:
 
 ## Task 2
 
-Começamos por criar um ficheiro plain.txt com o comado cat e com o seguinte conteúdo: 
+Começamos por criar um ficheiro plain.txt com o comando cat e com o seguinte conteúdo: 
 ![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_2.PNG)
 
 A seguir testamos três tipos de cifras diferentes usando o comando que foi nos apresentado no enunciado, começamos pela -aes-128-cbc e obtivemos este resultado:
