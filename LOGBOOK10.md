@@ -133,13 +133,19 @@ Concluindo, a chave obtida foi:
 Começamos por criar um ficheiro plain.txt com o comando cat e com o seguinte conteúdo: 
 ![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_2.PNG)
 
-A seguir testamos três tipos de cifras diferentes usando o comando que foi nos apresentado no enunciado, começamos pela -aes-128-cbc e obtivemos este resultado:
+A seguir testamos três tipos de cifras diferentes usando o comando que foi nos apresentado no enunciado com o seguinte comando:
+``` 
+$ openssl enc -ciphertype -e -in plain.txt -out cipher.bin -K 00112233445566778889aabbccddeeff -iv 0102030405060708 
+```
+Neste comando substituimos o -ciphertype pelo tipo de cifra utilizado, utilizamos a opção -e para encriptar, referimos o ficheiro que vai ser utilizado como plaint.txt com -in e o ficheiro resultante como cipher.bin com -out, a key da cifra vai ser referida a seguir a frente de -K e por fim -iv especifica o initialization vector.
+
+Começamos pela cifra -aes-128-cbc, isto quer dizer que vamos utilizar um algoritmo de encriptação Advanced Encryption Standard (aes), este algoritmo trabalha por meio de substituições e permutações, realizando várias etapas chamadas de "rounds" para cifrar os dados, isso ocorre repetidamente com base no tamanho da chave que neste caso é 128 bits e com modo de encriptação Cipher Block Chaining (explicamos como este modo funciona na proxima task) e obtivemos este resultado:
 ![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_1.PNG)
 
-A seguir testamos a cifra -bf-cbc e obtivemos o seguite resultado:
+A seguir testamos a cifra -bf-cbc, ou seja utilizamos a cifra Blowfish (bf) e um modo de encriptação Cipher Block Chaining (cbc) e obtivemos o seguite resultado:
 ![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_3.PNG)
 
-E por fim utilizamos a cifra -aes-128-cfb para obter o resultado em baixo:
+E por fim utilizamos a cifra -aes-128-cfb, em que é usado um algoritmo de encriptação Advanced Encryption Standard (aes) com tamanho 128 e modo de encriptação Cipher Feedback (cfb) neste modo em vez de cifrar blocos inteiros de texto de uma vez, o encriptador é usado para gerar um fluxo contínuo de dados encriptados. A saída encriptada de um bloco é usada como entrada para encriptar o próximo bloco de texto. Isso cria uma espécie de "corrente" de dados encriptados, em que a saída de um bloco encriptado é usada para encriptar o próximo bloco de texto, permitindo uma transformação de bloco para fluxo de dados, com isto obtemos o resultado em baixo:
 ![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_4.PNG)
 
 
