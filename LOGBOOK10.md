@@ -130,14 +130,35 @@ Concluindo, a chave obtida foi:
 
 ## Task 2
 
+Começamos por criar um ficheiro plain.txt com o comando cat e com o seguinte conteúdo: 
+![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_2.PNG)
+
+A seguir testamos três tipos de cifras diferentes usando o comando que foi nos apresentado no enunciado com o seguinte comando:
+``` 
+$ openssl enc -ciphertype -e -in plain.txt -out cipher.bin -K 00112233445566778889aabbccddeeff -iv 0102030405060708 
+```
+Neste comando substituimos o -ciphertype pelo tipo de cifra utilizado, utilizamos a opção -e para encriptar, referimos o ficheiro que vai ser utilizado como plaint.txt com -in e o ficheiro resultante como cipher.bin com -out, a key da cifra vai ser referida a seguir a frente de -K e por fim -iv especifica o initialization vector.
+
+Começamos pela cifra -aes-128-cbc, isto quer dizer que vamos utilizar um algoritmo de encriptação Advanced Encryption Standard (aes), este algoritmo trabalha por meio de substituições e permutações, realizando várias etapas chamadas de "rounds" para cifrar os dados, isso ocorre repetidamente com base no tamanho da chave que neste caso é 128 bits e com modo de encriptação Cipher Block Chaining (explicamos como este modo funciona na proxima task) e obtivemos este resultado:
+![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_1.PNG)
+
+A seguir testamos a cifra -bf-cbc, ou seja utilizamos a cifra Blowfish (bf) e um modo de encriptação Cipher Block Chaining (cbc) e obtivemos o seguite resultado:
+![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_3.PNG)
+
+E por fim utilizamos a cifra -aes-128-cfb, em que é usado um algoritmo de encriptação Advanced Encryption Standard (aes) com tamanho 128 e modo de encriptação Cipher Feedback (cfb) neste modo em vez de cifrar blocos inteiros de texto de uma vez, o encriptador é usado para gerar um fluxo contínuo de dados encriptados. A saída encriptada de um bloco é usada como entrada para encriptar o próximo bloco de texto. Isso cria uma espécie de "corrente" de dados encriptados, em que a saída de um bloco encriptado é usada para encriptar o próximo bloco de texto, permitindo uma transformação de bloco para fluxo de dados, com isto obtemos o resultado em baixo:
+![Texto](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/Task2_4.PNG)
+
 
 ## Task3
 
 Aqui podemos ver a imagem original que temos que encriptar:
+
 ![Imagem Original](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_original_image.png)
 
 Para encriptar a imagem usamos o mesmo comando da Task 2 (`openssl`). Começamos por encriptar a imagem anterior usando CBC(Cipher Block Chaining) usando "c0decaca0" como chave e "0102030405060708" como initialization vector:
+
 ![Comandos para a Encriptação em CBC](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_1.png)
+
 ![Comandos para podermos ver a imagem encriptada](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_2.png)
 
 E obtivemos:
@@ -149,11 +170,13 @@ O algortimo de Cipher Block Chaining divide o ficheiro em blocos de tamanho igua
 Como o algroritmo utiliza o bloco encriptado anterior para encriptar o seguinte, cada conjunto de pixeis é encriptado de forma diferente e por isso não conseguimos ver nenhum padrão na imagem observada.
 
 Encriptamos novamente mas desta vez usando ECB(Electronic Code Book) usando "c0decaca0" como chave:
+
 ![Comandos para a Encriptação em ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_3.png)
 
 ![Comandos para podermos ver a imagem encriptada](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_4.png)
 
 E obtivemos:
+
 ![Imagem Encriptada com ECB](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/encry_task3_cipher_image2.png)
 
 O algortimo de Electronic Code Book divide o ficheiro em blocos de tamanho igual ao initialization vector e adiciona padding ao ultimo bloco apenas se for necessário. De seguida, encripta cada bloco com a chave, de forma independente, ou seja, cada conjunto de pixeis é encriptado da mesma maneira, e por isso conseguimos ver na mesma o formato da imagem original, na imagem encriptada.
