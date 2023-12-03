@@ -14,11 +14,7 @@ Corremos os seguintes commandos, de modo a gerar um certificado assinado por nos
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki04_5.png)
 
-Imprimimos o conteudo do certificado:
-
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki05.png)
-
-Imprimimos o conteudo da chave privada:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki06.png)
 
