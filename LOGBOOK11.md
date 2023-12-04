@@ -99,7 +99,11 @@ Para aceder a "https://www.bank32.com", tivemos que modificar a DNS da nossa maq
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki27.png)
 
-Através do browser fomos a "https://www.bank32.com", e obtivemos o seguite:
+Através do browser fomos a "https://www.bank32.com", mas este dizia-nos que não conseguia estabelecer uma ligação segura:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki21_1.png)
+
+Com isto abrimos numa janela privada e obtivemos o seguite:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki21.png)
 
@@ -124,8 +128,35 @@ Depois reiniciamos o servidor(correndo "service apache2 stop" e "service apache2
 
 ## Task 5
 
-Começamos por adicionar "www.facebook.com" à DNS da nossa maquina e alterar o url do nosso website lançado pelo servidor Apache:
+Começamos por adicionar "www.facebook.com" à DNS da nossa maquina, alterar o url do nosso website lançado pelo servidor Apache e adicionar um novo html para este website:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki29.png)
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki30.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki31.png)
+
+E acedemos a "www.facebook.com" numa janela privada, mas apareceu-nos a seguinte mensagem no ecra:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki32.png)
+
+Este aviso aparece-nos porque o certificado, fornecido pelo nosso "www.facebook.com", embora seja valido e verificado por uma CA que o browser confia(como vimos na task 4), não corresponde ao url "www.facebook.com", mas sim a "www.bank32.com".
+
+## Task 6
+
+Nesta tarefa iremos assumir que o atacante tem controlo sobre a CA, logo este vai criar um certificado para comprovar que o nosso "www.facebook.com" é legitimo.
+
+Iremos repetir os passos que fizemos nas tarefas anteriores: fazer um CSR à CA para validar o nosso website, gerar um certificado para o respetivo pedido, e substituir o certificado e a chave privada antigos pelo novo certificado e a nova chave privada.
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki33.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki34.png)
+
+E abrimos novamente o website:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki34.png)
+
+E ja temos uma conecção "segura" com este website.
+
+
+
