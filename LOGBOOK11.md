@@ -124,7 +124,7 @@ Depois reiniciamos o servidor(correndo "service apache2 stop" e "service apache2
 
 ## Task 5
 
-Começamos por adicionar "facebook.com" à DNS da nossa maquina e alterar o url do nosso website lançado pelo servidor Apache:
+Começamos por adicionar "www.facebook.com" à DNS da nossa maquina e alterar o url do nosso website lançado pelo servidor Apache:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki29.png)
 
