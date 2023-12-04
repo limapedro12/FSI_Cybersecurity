@@ -2,7 +2,8 @@
 
 Começamos por investigar o código dado no ficheiro `challenge.py` para perceber a funcionalidade do mesmo:
 
-```# Python Module ciphersuite
+```
+# Python Module ciphersuite
 import os
 import sys
 from rsa_utils import getParams
@@ -27,7 +28,8 @@ with open(FLAG_FILE, 'r') as fd:
 
 print("Public parameters -- \ne: ", e, "\nn: ", n)
 print("ciphertext:", hexlify(enc(un_flag.encode(), e, n)).decode())
-sys.stdout.flush()```
+sys.stdout.flush()
+```
 
 O código dado 2 funções: enc(x,e,n), que é utiliza o algoritmo RSA para encriptar a mensagem que se encontra no ficheiro "flag.txt", com um expoente púlico "e" e um módulo associado "n"; dec(y,d,n), que é usada para desencriptar a mensagem e retorná-la em bytes.
 
