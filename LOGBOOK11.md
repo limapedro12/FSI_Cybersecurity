@@ -74,7 +74,9 @@ A seguir, imprimimos o conteudo de  server.crt:
 
 
 ## Task 4
-Nesta tarefa iremos ver como é os certificados de chave publica são utilizados pelos websites, de modo a permitir uma navegação segura. Para isso precisams de montar um container com um servidor Apache. Abrimos um novo terminal na pasta com o ficheiro `docker-compose.yml` e correr `dcbuild` seguido de `dcup`. Depois abrimos outro terminal e corremos `dockps` e vimos que tinhamos que conectar a `0f97471292c8  www-10.9.0.80`, logo corremos `docksh 0f`.
+Nesta tarefa iremos ver como é os certificados de chave publica são utilizados pelos websites, de modo a permitir uma navegação segura. 
+Para isso precisams de montar um container com um servidor Apache. Abrimos um novo terminal na pasta com o ficheiro `docker-compose.yml` e correr `dcbuild` seguido de `dcup`. Depois abrimos outro terminal e corremos `dockps` e vimos que tinhamos que conectar a `0f97471292c8  www-10.9.0.80`, logo corremos `docksh 0f`.
+
 De seguida, dentro do container, fomos à pasta `/etc/apache2/sites-available`, onde estao guardados os ficheiros dos websites:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki17.png)
@@ -92,6 +94,10 @@ Como pedido no enunciado habilitamos o modulo ssl do Apache e depois habilitamos
 Depois corremos o servivor Apache, para isso corremos o seguinte comando e introduzimos a password indicada no enunciado("dees"), de modo a desencriptar a nossa chave privada:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki20.png)
+
+Para aceder a "https://www.bank32.com", tivemos que adicionar o DNS do nosso servidor a `/etc/hosts`:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki27.png)
 
 Através do browser fomos a "https://www.bank32.com", e obtivemos o seguite:
 
@@ -113,4 +119,4 @@ De seguida copiamos o `server.crt` e `server.key` para a pasta partilhada(`Labse
 
 Depois reiniciamos o servidor(correndo "service apache2 stop" e "service apache2 restart"). Depois voltamos a abrir o browser, acedemos a "https://www.bank32.com" e obtivemos:
 
-![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki27.png)
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki28.png)
