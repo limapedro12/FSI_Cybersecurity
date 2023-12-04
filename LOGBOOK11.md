@@ -95,7 +95,7 @@ Depois corremos o servivor Apache, para isso corremos o seguinte comando e intro
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki20.png)
 
-Para aceder a "https://www.bank32.com", tivemos que adicionar o IP do nosso servidor a `/etc/hosts`:
+Para aceder a "https://www.bank32.com", tivemos que modificar a DNS da nossa maquina, adicionando o nosso servidor a `/etc/hosts`:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki27.png)
 
@@ -120,3 +120,12 @@ De seguida copiamos o `server.crt` e `server.key` para a pasta partilhada(`Labse
 Depois reiniciamos o servidor(correndo "service apache2 stop" e "service apache2 restart"). Depois voltamos a abrir o browser, acedemos a "https://www.bank32.com" e obtivemos:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki28.png)
+
+
+## Task 5
+
+Começamos por adicionar "facebook.com" à DNS da nossa maquina e alterar o url do nosso website lançado pelo servidor Apache:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki29.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki30.png)
