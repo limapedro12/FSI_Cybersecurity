@@ -65,3 +65,5 @@ while (p<2**512+1000):
         q = nextprime(2 ** 513-1000)
     q = nextprime(q)
 ```
+
+No código iteramos por todas a combinações de números primos proximos dos valores 2^512 e 2^513 que estivessem num intervalo de [2^512-1000,2^512+1000] e [2^513-1000,2^513+1000], fizemos isto porque nos foi dito que p e q eram números primos proximos dos valores indicados e achamos este intervalo adequado. Para cada combinação de números primos p e q se p*q fosse igual ao módulo n então era decifrado o ciphertext dado com os valores p e q. Por fim confirmamos que obtivemos o valor correto se no string que obtivemos estivesse a palavra "flag".
