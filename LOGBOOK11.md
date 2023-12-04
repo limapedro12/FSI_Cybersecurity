@@ -2,7 +2,7 @@ O guião da semana 11 tem como objetivo perceber o funcionamento de Public Key I
 
 ## Task 1
 
-Começamos por copiar o código de `/usr/lib/ssl/openssl.cnf` para um ficheiro chamado `myopen.cnf` no diretório atual e criamos um ficheiro `index.txt` vazio e um fichero `serial` com conteudo 1000 e descomentados o atributo `unique_subject` do ficheiro `myopen.cnf`, como nos é indicado no enunciado.
+Começamos por copiar o código de `/usr/lib/ssl/openssl.cnf` para um ficheiro chamado `myopen.cnf` no diretório atual e criamos um ficheiro `index.txt` vazio e um fichero `serial` com conteúdo 1000 e descomentamos o atributo `unique_subject` do ficheiro `myopen.cnf`, como nos é indicado no enunciado.
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki01.png)
 
@@ -10,7 +10,7 @@ Começamos por copiar o código de `/usr/lib/ssl/openssl.cnf` para um ficheiro c
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki03.png)
 
-Agora queremos gerar o certificado e a respetiva chave privada da nossa CA, para depois podermos criar os nossos própios certificados e indicar se um website é seguro ou não. Para isso, corremos os seguintes commandos, de modo a gerar um certificado assinado por nos própios com a password "dees" e a respetiva chave privada:
+Agora queremos gerar o certificado e a respetiva chave privada da nossa CA, para depois podermos criar os nossos próprios certificados e indicar se um website é seguro ou não. Para isso, corremos os seguintes comandos, de modo a gerar um certificado assinado por nos próprios com a password "dees" e a respetiva chave privada:
 
 ![openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -keyout ca.key -out ca.crt](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki04.png)
 
@@ -63,19 +63,19 @@ De seguida repetimos os passos, mas desta vez adicionando o seguinte item ao cri
 
 ## Task 3 
 
-Nesta tarefa queremos utilizar a nossa própia CA para gerar certificados. Para gerar um certificado X509 (server.crt) correspondente ao certificate signing request da tarefa anterior (server.csr), utilizando "ca.crt" e "ca.key", corremos o seguinte comando:
+Nesta tarefa queremos utilizar a nossa própria CA para gerar certificados. Para gerar um certificado X509 (server.crt) correspondente ao certificate signing request da tarefa anterior (server.csr), utilizando "ca.crt" e "ca.key", corremos o seguinte comando:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki11.png)
 
-Como, podemos ver a configuração requere a existência de uma pasta "./demoCA/newcerts/". Então criamos uma nova pasta "demoCA" dentro da pasta atual e uma pasta "newcerts" dentro dessa e voltamos a correr  comando:
+Como podemos ver, a configuração requere a existência de uma pasta "./demoCA/newcerts/". Então criamos uma nova pasta "demoCA" dentro da pasta atual e uma pasta "newcerts" dentro dessa e voltamos a correr comando:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki12.png)
 
-Agora diz que o ficheiro "demoCA/index.txt" não existe, logo copiamos o ficheiro "index.txt" da pasta atual para o pasta "demoCA" e voltamos a correr o comando:
+Agora diz que o ficheiro "demoCA/index.txt" não existe, logo copiamos o ficheiro "index.txt" da pasta atual para a pasta "demoCA" e voltamos a correr o comando:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki13.png)
 
-Agora diz que o ficheiro "demoCA/serial" não existe, logo copiamos o ficheiro "serial" da pasta atual para o pasta "demoCA" e voltamos a correr o comando:
+Agora diz que o ficheiro "demoCA/serial" não existe, logo copiamos o ficheiro "serial" da pasta atual para a pasta "demoCA" e voltamos a correr o comando:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki14.png)
 
@@ -83,7 +83,7 @@ De modo a que o "myopen.cnf" permita que o comando "openssl ca" copie o extensio
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki15.png)
 
-A seguir, imprimimos o conteudo de  server.crt:
+A seguir, imprimimos o conteúdo de server.crt:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki16.png)
 
@@ -91,7 +91,7 @@ A seguir, imprimimos o conteudo de  server.crt:
 ## Task 4
 
 Nesta tarefa iremos ver como é os certificados de chave publica são utilizados pelos websites, de modo a permitir uma navegação segura. 
-Para isso precisams de montar um container com um servidor Apache. Abrimos um novo terminal na pasta com o ficheiro `docker-compose.yml` e corremos no terminal `dcbuild`, seguido de `dcup`. Depois abrimos outro terminal e corremos `dockps` e vimos que tinhamos que tinhamos que nos conectar a `0f97471292c8  www-10.9.0.80`, logo corremos `docksh 0f`.
+Para isso precisamos de montar um container com um servidor Apache. Abrimos um novo terminal na pasta com o ficheiro `docker-compose.yml` e corremos no terminal `dcbuild`, seguido de `dcup`. Depois abrimos outro terminal e corremos `dockps` e vimos que tinhamos que tinhamos que nos conectar a `0f97471292c8  www-10.9.0.80`, logo corremos `docksh 0f`.
 
 De seguida, dentro do container, fomos à pasta `/etc/apache2/sites-available`, onde estão guardados os ficheiros dos websites:
 
@@ -107,11 +107,11 @@ Como pedido no enunciado habilitamos o modulo ssl do Apache e depois habilitamos
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki19.png)
 
-Depois corremos o servivor Apache, para isso corremos o seguinte comando e introduzimos a password indicada no enunciado("dees"), de modo a desencriptar a nossa chave privada:
+Depois corremos o servidor Apache, para isso corremos o seguinte comando e introduzimos a password indicada no enunciado("dees"), de modo a desencriptar a nossa chave privada:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki20.png)
 
-Para aceder a "https://www.bank32.com", tivemos que modificar a DNS da nossa maquina, adicionando o nosso servidor a `/etc/hosts`:
+Para aceder a "https://www.bank32.com", tivemos que modificar a DNS da nossa máquina, adicionando o nosso servidor a `/etc/hosts`:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki27.png)
 
@@ -119,11 +119,11 @@ Através do browser fomos a "https://www.bank32.com", mas este dizia-nos que nã
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki21_1.png)
 
-Com isto abrimos numa janela privada e obtivemos o seguite:
+Com isto abrimos numa janela privada e obtivemos o seguinte:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki21.png)
 
-Como nos é dito no enunciado, não deveremos conseguir abrir o website de forma segura, porque o browser não reconhece o certificado, uma vez que este não foi assinado por uma Certificate Authority que o browser confia. Para isso adicionarmos a Certificate Authority criada nas tasks anteriores à lista de Certificate Authorities em que o nosso browser confia, colocamos no url "about:preferences#privacy" e andamos para baixo até encontrar a secção "Cerificates", clicamos em "View Certificates...", clicamos em "Import..." e selecionamos o ficheiro `ca.crt`. 
+Como nos é dito no enunciado, não deveremos conseguir abrir o website de forma segura, porque o browser não reconhece o certificado, uma vez que este não foi assinado por uma Certificate Authority que o browser confia. Para isso adicionarmos a Certificate Authority criada nas tarefas anteriores à lista de Certificate Authorities em que o nosso browser confia, colocamos no url "about:preferences#privacy" e andamos para baixo até encontrar a secção "Cerificates", clicamos em "View Certificates...", clicamos em "Import..." e selecionamos o ficheiro `ca.crt`. 
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki22.png)
 
@@ -133,11 +133,11 @@ Como nos é dito no enunciado, não deveremos conseguir abrir o website de forma
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki25.png)
 
-De seguida copiamos o `server.crt` e `server.key` para a pasta partilhada(`Labsetup/volumes`) e depois no terminal do container, alteramos o `bank32_apache_ssl.conf`, de modo a que o certificado passasse a ser `/volumes/server.crt` e a chave privada passasse a ser `/volumes/server.key`.
+De seguida copiamos o `server.crt` e `server.key` para a pasta partilhada (`Labsetup/volumes`) e depois no terminal do container, alteramos o `bank32_apache_ssl.conf`, de modo a que o certificado passasse a ser `/volumes/server.crt` e a chave privada passasse a ser `/volumes/server.key`.
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki26.png)
 
-Depois reiniciamos o servidor(correndo "service apache2 stop" e "service apache2 restart"). Voltamos a abrir o browser, acedemos a "https://www.bank32.com" e obtivemos:
+Depois reiniciamos o servidor (correndo "service apache2 stop" e "service apache2 restart"). Voltamos a abrir o browser, acedemos a "https://www.bank32.com" e obtivemos:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki28.png)
 
@@ -145,7 +145,7 @@ Depois reiniciamos o servidor(correndo "service apache2 stop" e "service apache2
 ## Task 5
 
 Esta tarefa tem como intuito mostrar-nos como a PKI nos defende contra a Man in Middle Attacks. 
-Começamos por adicionar "www.facebook.com" à DNS da nossa maquina, alterar o url do nosso website lançado pelo servidor Apache e adicionar um novo html para este website:
+Começamos por adicionar "www.facebook.com" à DNS da nossa máquina, alterar o url do nosso website lançado pelo servidor Apache e adicionar um novo html para este website:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki29.png)
 
@@ -157,7 +157,7 @@ E acedemos a "www.facebook.com", mas apareceu-nos a seguinte mensagem no ecrã:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki32.png)
 
-Este aviso aparece-nos porque o certificado, fornecido pelo nosso "www.facebook.com", embora seja válido e verificado por uma CA que o browser confia(como vimos na task 4), não corresponde ao url "www.facebook.com", mas sim a "www.bank32.com".
+Este aviso aparece-nos porque o certificado, fornecido pelo nosso "www.facebook.com", embora seja válido e verificado por uma CA que o browser confia (como vimos na task 4), não corresponde ao url "www.facebook.com", mas sim a "www.bank32.com".
 
 
 ## Task 6
