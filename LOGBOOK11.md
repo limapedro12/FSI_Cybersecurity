@@ -22,9 +22,9 @@ Corremos os seguintes commandos, de modo a gerar um certificado assinado por nos
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki06_2.png)
 
-Na penultima foto, podemos ver as especificações do certificado da CA, e podemos ver que é auto-assinado, uma vez que o "Subject" e o "Issuer" são o mesmo.
+Acima podemos ver as especificações do certificado da CA, e podemos ver que é auto-assinado, uma vez que o "Subject" e o "Issuer" são o mesmo.
 
-Como podemos ver na ultima imagem, no ficheiro `ca.key` temos vários numeros utilizados no algoritmo de encriptação RSA, entre os quais "modulus" representa o _n=p*q_, "prime1" representa o _p_ e "prime2" representa o _q_.
+Como podemos ver nas imagens acima, no ficheiro `ca.key` temos vários numeros utilizados no algoritmo de encriptação RSA, entre os quais "modulus" representa o _n=p*q_, "prime1" representa o _p_ e "prime2" representa o _q_.
 
 ## Task 2
 Nesta tarefa, temos que gerar um cerificado de chave publica da nossa CA para uma empresa chamada "bank32.com".
