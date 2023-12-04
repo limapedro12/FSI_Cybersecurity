@@ -154,7 +154,7 @@ Iremos repetir os passos que fizemos nas tarefas anteriores: fazer um CSR à CA 
 
 E abrimos novamente o website:
 
-![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki34.png)
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki35.png)
 
 E ja temos uma conecção "segura" com este website.
 
