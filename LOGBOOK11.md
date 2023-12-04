@@ -95,7 +95,7 @@ Depois corremos o servivor Apache, para isso corremos o seguinte comando e intro
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki20.png)
 
-Para aceder a "https://www.bank32.com", tivemos que adicionar o DNS do nosso servidor a `/etc/hosts`:
+Para aceder a "https://www.bank32.com", tivemos que adicionar o IP do nosso servidor a `/etc/hosts`:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki27.png)
 
