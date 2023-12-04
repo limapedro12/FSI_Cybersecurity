@@ -18,6 +18,12 @@ Corremos os seguintes commandos, de modo a gerar um certificado assinado por nos
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki06.png)
 
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki06_1.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/pki06_2.png)
+
+Como podemos ver na imagem acima, no ficheiro `ca.key` temos vários numeros utilizados no algoritmo de encriptação RSA, entre os quais "modulus" representa o _n=p*q_, "prime1" representa o _p_ e "prime2" representa o _q_.
+
 No enunciado são indicadas algumas perguntas às quais temos que responder:
 Que partes do certificado indicam que é um cerificado de uma CA?
 • What part of the certificate indicates this is a self-signed certificate?
