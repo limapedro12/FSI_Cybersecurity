@@ -105,7 +105,7 @@ Concluindo, a chave obtida foi:
 'd' -> 'Y'
 'e' -> 'P'
 'f' -> 'V'
-'g' -> 'O'
+'g' -> 'B'
 'h' -> 'R'
 'i' -> 'L'
 'j' -> 'Q'
