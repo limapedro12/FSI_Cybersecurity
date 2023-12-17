@@ -60,14 +60,29 @@ Depois é nos pedido que filteremos por pedidos que venham de uma subnet especif
 
 ## Task 1.2
 
-O objetivo desta task é criar um pedido cujo source address é diferente do nosso. Ao enviar um pedido destes, a resposta ao mesmo será enviada para o source IP que definimos anteriormente. Para isso alteramos um pouco as linhas de codigo dadas no enunciado, adicionando `a.src = '10.9.0.6'`, de modo a definir o source IP como "10.9.0.6", e para saber se a resposta foi enviada para o source IP, como esperado, criamos um novo programa "sniffer2.py" que esteja atento a todos os pacotes que cheguem ao IP 10.9.0.6(host B).
+O objetivo desta task é criar um pedido cujo source address é diferente do nosso. Ao enviar um pedido destes, a resposta ao mesmo será enviada para o source IP que definimos anteriormente. Para isso alteramos um pouco as linhas de codigo dadas no enunciado, adicionando `a.src = '10.9.0.6'`, de modo a definir o source IP como "10.9.0.6"(host B). Para saber se a resposta foi enviada para o source IP, como esperado, criamos um novo programa "sniffer2.py" que está atento a todos os pacotes que cheguem ou saiam do IP 10.9.0.6(host B).
 
-Codigo do Scapy:
+Codigo do Scapy para enviar a mensagem:
+
 ![](sn_sp_21.png)
 
+
+Codigo do "sniffer2.py":
+
+![](sn_sp_21_2.png)
+
+
 Pacote que enviamos:
+
 ![](sn_sp_22.png)
 
+
 Pacote de resposta:
+
 ![](sn_sp_23.png)
+
+
+Podemos fazer o mesmo utilizando o Wireshark:
+
+![](sn_sp_24.png)
 
