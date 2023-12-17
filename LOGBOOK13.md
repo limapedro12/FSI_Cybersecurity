@@ -46,15 +46,17 @@ No enunciado é nos pedido que comecemos por filtrar apenas pelos pacotes ICMP. 
 
 ![](sn_sp_16_icmp.png)
 
-A seguir é nos pedido que filteremos pelos pacotes TCP que venham de um determinado ip e que tenha como a porta 23 de destino. Decidimos filtrar por pacotes que venham do host B, ou seja, com ip "10.9.0.6". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'tcp and host 10.9.0.6 and port 23'`. O "sniffer.py" funciona, porém não coneguimos testar.
+A seguir é nos pedido que filteremos pelos pacotes TCP que venham de um determinado ip e que tenha como a porta 23 de destino. Decidimos filtrar por pacotes que venham do host B, ou seja, com ip "10.9.0.6". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'tcp and host 10.9.0.6 and port 23'`. O "sniffer.py" corre, porém não coneguimos testar.
 
 ![](sn_sp_17.png)
 
 ![](sn_sp_18.png)
 
-Depois é nos pedido que filteremos por pedidos que venham de uma subnet especifica, aconselham a filtrar pela subnet associada à nossa VM, que neste caso é "10.9.0.0/24". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'net 10.9.0.0/24'`.
+Depois é nos pedido que filteremos por pedidos que venham de uma subnet especifica, aconselham a filtrar pela subnet associada à nossa VM, que neste caso é "10.9.0.0/24". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'net 10.9.0.0/24'`. Para testar fizemos `ping 10.9.0.5` no host B.
 
-![]()
+![](sn_sp_19.png)
+
+![](sn_sp_19.png)
 
 ## Task 1.2
 
