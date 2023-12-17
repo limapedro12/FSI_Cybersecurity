@@ -56,9 +56,10 @@ Depois é nos pedido que filteremos por pedidos que venham de uma subnet especif
 
 ![](sn_sp_19.png)
 
-![](sn_sp_19.png)
+![](sn_sp_20.png)
 
 ## Task 1.2
 
+O objetivo desta task é criar um pedido cujo source address é diferente do nosso. Ao enviar um pedido destes, a resposta ao mesmo será enviada para o source IP que definimos anteriormente. Para isso alteramos um pouco as linhas de codigo dadas no enunciado, adicionando ...., e criamos um novo programa "sniffer2.py" que esteja atento a todos os pacotes que cheguem ao IP 10.9.0.6(host B)
 
 
