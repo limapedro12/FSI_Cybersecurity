@@ -86,3 +86,14 @@ Podemos fazer o mesmo utilizando o Wireshark:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_24.png)
 
+
+## Task 1.3
+
+O objetivo desta task é estimar o numero de routers entre a VM e um destino à escolha.
+Para isso criamos o seguinte programa em python:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_25.png)
+
+A ideia é enviar um pacote de qualquer tipo, que no nosso caso é do tipo ICMP, com o seu TTL definido a 1 (ponto 1). TTL ou Time-To-Live é o numero máximo de viagens entre 2 routers que um pacote faz na rede até ser descartado. Este pacote é descartado logo no primeiro router, que nos envia uma mensagem de erro com o seu IP. Para obtermos esta informação enviamos o pacote através da função do Scapy `sr1()`, que envia o pacote e retorna a resposta do mesmo (ponto 2).
+Depois, vamos incrementando o TTL e enviando novamente os pacotes até chegar ao destino (ponto 5), isto é feito guardando no `current_router` o ultimo IP obtido e quando `current_router == destination_router` saimos do ciclo (ponto 3). Durante este processo vamos recolhendo os IPs devolvidos, guardamos na lista `ip_list`(ponto 4). Com isto podemos descobrir o numero de routers por onde o pacote passou e quais os seus IPs(ponto 6).
+
