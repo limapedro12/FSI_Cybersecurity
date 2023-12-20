@@ -46,11 +46,13 @@ No enunciado é nos pedido que comecemos por filtrar apenas pelos pacotes ICMP. 
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_16_icmp.png)
 
-A seguir é nos pedido que filteremos pelos pacotes TCP que venham de um determinado ip e que tenha como a porta 23 de destino. Decidimos filtrar por pacotes que venham do host B, ou seja, com ip "10.9.0.6". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'tcp and host 10.9.0.6 and port 23'`. O "sniffer.py" corre, porém não coneguimos testar.
+A seguir é nos pedido que filteremos pelos pacotes TCP que venham de um determinado ip e que tenha como a porta 23 de destino. Decidimos filtrar por pacotes que venham do host B, ou seja, com ip "10.9.0.6". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'tcp and src host 10.9.0.6 and dst port 23'`. Para testar utilizamos o scapy para gerar e enviar um pacote TCP com IP de origem "10.9.0.6", IP de destino "10.9.0.5" e porta de destino "23".
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_17.png)
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_18.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_18_1.png)
 
 Depois é nos pedido que filteremos por pedidos que venham de uma subnet especifica, aconselham a filtrar pela subnet associada à nossa VM, que neste caso é "10.9.0.0/24". Para isso alteramos, na chamada à função `sniff()`, o `filter` para `'net 10.9.0.0/24'`. Para testar fizemos `ping 10.9.0.5` no host B.
 
@@ -99,4 +101,61 @@ Depois, vamos incrementando o TTL e enviando novamente os pacotes até chegar ao
 
 Corremos o programa e obtivemos:
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_26.png)
+
+
+## Task 1.4
+
+Nesta task temos que fazer um programa que receba pacotes ICMP, e, independentemente do IP de destino dos mesmos, gere um echo reply. Logo, quando um dispositivo utilizar o comando `ping` para um IP X, independentemente se o dispositivo X está vivo ou não, o programa ping irá receber sempre uma resposta a indicar que X está vivo. 
+
+Para fazer isto começamos por criar o seguinte programa, no ficheiro "fake_ping.py":
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_29.png)
+
+Para o testar, corremos o programa "fake_ping.py" num terminal da nossa VM e abrimos o terminal do host B e corremos:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_28.png)
+
+Porém ao contrário do que estavamos à espera ele não funcionou. Para tentar resolver o problema, corremos novamente o "fake_ping.py" e `ping 1.2.3.4`, mas desta vez também o wireshark ao mesmo tempo, e vimos que o programa "fake_ping.py" envia pacotes do tipo "Type: 8 (Echo (ping) request)", quando deveria enviar "Type: 0 (Echo (ping) reply)". Além disso, o ID do "Echo (ping) reply" deve ser igual ao ID do respetivo "Echo (ping) request", o que nao está a acontecer, e como é um pedido de "Echo", a resposta deve enviar a mesma raw data que recebeu.
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_33.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_34.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_35.png)
+
+Alteramos o programa, corrigindo os erros:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_36.png)
+
+Correndo obtivemos o seguinte:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_37.png)
+
+Como podemos ver nas respostas ping aparece "DUP!". No wireshark podemos ver que "seq" das respostas é sempres "0/0", quando deveria ser igual ao "seq" do "Echo (ping) request". Para corrigir adicionamos `b.seq = pkt[ICMP].seq`:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_38.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_39.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_40.png)
+
+De seguida, fizemos o mesmo, mas para o ip "10.9.0.99":
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_41.png)
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_42.png)
+
+Aqui tivemos um erro diferente, onde o dispositivo que está a fazer `ping`, envia um ARP request broadcast, mas não obtem resposta e por isso ele nem sequer envia o pacote ICMP. A tabela de ARP traduz endereços de IP, para endereços MAC. Para preencher esta tabela, utiliza ARP packets. Quando um dispositivo quer comunicar com o dispositivo com um determinado IP, mas este não consta na sua tabela, o dispositivo envia uma ARP request broadcast message com o IP desejado para toda a rede e o dispositivo que tiver o endereço de IP desejado envia um ARP reply packet com o seu endereço MAC. Por isso, tivemos que alterar o nosso programa para quando detetar ARP request broadcast e enviar o nosso MAC address como resposta.
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_43.png)
+
+Depois fizemos o mesmo, mas para o ip "8.8.8.8":
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_44.png)
+
+Como o IP "8.8.8.8", existe realmente, o ping recebe duas respostas, a verdadeira e a nossa.
+
+
+
+
 
