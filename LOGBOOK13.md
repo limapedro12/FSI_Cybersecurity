@@ -105,9 +105,9 @@ Corremos o programa e obtivemos:
 
 ## Task 1.4
 
-Nesta task temos que fazer um programa que receba pacotes ICMP, e, independentemente do IP de destino dos mesmos, gere um echo reply. Logo, quando um dispositivo utilizar o comando `ping` para um IP X, independentemente se o dispositivo X está vivo ou não, o programa ping irá receber sempre uma resposta a indicar que X está vivo. 
+Nesta task temos que fazer um programa que faça sniff a pacotes ICMP, e gere um echo reply para os mesmos, independentemente dos seus IPs de destino. Logo, quando um dispositivo utilizar o comando `ping` para um IP X, independentemente se o dispositivo X está vivo ou não, o `ping` irá receber sempre uma resposta a indicar que X está vivo. 
 
-Para fazer isto começamos por criar o seguinte programa, no ficheiro "fake_ping.py":
+Para fazer este programa, começamos por escrever o sguinte codigo, no ficheiro "fake_ping.py":
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_29.png)
 
@@ -115,7 +115,7 @@ Para o testar, corremos o programa "fake_ping.py" num terminal da nossa VM e abr
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_28.png)
 
-Porém ao contrário do que estavamos à espera ele não funcionou. Para tentar resolver o problema, corremos novamente o "fake_ping.py" e `ping 1.2.3.4`, mas desta vez também o wireshark ao mesmo tempo, e vimos que o programa "fake_ping.py" envia pacotes do tipo "Type: 8 (Echo (ping) request)", quando deveria enviar "Type: 0 (Echo (ping) reply)". Além disso, o ID do "Echo (ping) reply" deve ser igual ao ID do respetivo "Echo (ping) request", o que nao está a acontecer, e como é um pedido de "Echo", a resposta deve enviar a mesma raw data que recebeu.
+Porém ao contrário do que estavamos à espera, o `ping` não recebeu os pacotes de resposta gerados. Para tentar resolver o problema, corremos novamente o "fake_ping.py" e `ping 1.2.3.4`, mas desta vez realizamos também uma captura no wireshark, e vimos que o programa "fake_ping.py" envia pacotes do tipo "Type: 8 (Echo (ping) request)", quando deveria enviar "Type: 0 (Echo (ping) reply)". Além disso, o ID do "Echo (ping) reply" deve ser igual ao ID do respetivo "Echo (ping) request", o que nao está a acontecer, e como é um pedido de "Echo", a resposta deve enviar a mesma raw data que recebeu.
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_33.png)
 
@@ -127,11 +127,11 @@ Alteramos o programa, corrigindo os erros:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_36.png)
 
-Correndo obtivemos o seguinte:
+Corremos novamente e obtivemos o seguinte:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_37.png)
 
-Como podemos ver nas respostas ping aparece "DUP!". No wireshark podemos ver que "seq" das respostas é sempres "0/0", quando deveria ser igual ao "seq" do "Echo (ping) request". Para corrigir adicionamos `b.seq = pkt[ICMP].seq`:
+Como podemos ver nas respostas ping aparece "DUP!". Fomos à procura de uma solução e comparando com outros `ping` verdadeiros, reparamos no wireshark que a "seq" das respostas é sempres "0/0", quando deveria ser igual ao "seq" do "Echo (ping) request" correspondente. Para corrigir adicionamos `b.seq = pkt[ICMP].seq`:
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_38.png)
 
@@ -145,17 +145,14 @@ De seguida, fizemos o mesmo, mas para o ip "10.9.0.99":
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_42.png)
 
-Aqui tivemos um erro diferente, onde o dispositivo que está a fazer `ping`, envia um ARP request broadcast, mas não obtem resposta e por isso ele nem sequer envia o pacote ICMP. A tabela de ARP traduz endereços de IP, para endereços MAC. Para preencher esta tabela, utiliza ARP packets. Quando um dispositivo quer comunicar com o dispositivo com um determinado IP, mas este não consta na sua tabela, o dispositivo envia uma ARP request broadcast message com o IP desejado para toda a rede e o dispositivo que tiver o endereço de IP desejado envia um ARP reply packet com o seu endereço MAC. Por isso, tivemos que alterar o nosso programa para quando detetar ARP request broadcast e enviar o nosso MAC address como resposta.
+Aqui tivemos um erro diferente, onde o dispositivo que está a fazer `ping`, envia um ARP request broadcast, mas não obtem resposta e por isso ele nem sequer envia o pacote ICMP. Nos dispositivos existe uma tabela de ARP, que traduz endereços de IP para endereços MAC. Para preencher esta tabela, utiliza ARP packets. Quando um dispositivo quer comunicar com o dispositivo com um determinado IP, mas este não consta na sua tabela, o dispositivo envia uma ARP request broadcast message com o IP desejado para toda a rede e o dispositivo que tiver o endereço de IP desejado envia um ARP reply packet com o seu endereço MAC. Por isso, tivemos que alterar o nosso programa para quando detetar ARP request broadcast e enviar o nosso MAC address como resposta.
 
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_43.png)
 
-Depois fizemos o mesmo, mas para o ip "8.8.8.8":
-
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_44.png)
 
-Como o IP "8.8.8.8", existe realmente, o ping recebe duas respostas, a verdadeira e a nossa.
+Depois fizemos o mesmo, mas para o ip "8.8.8.8":
 
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_45.png)
 
-
-
-
+Como o IP "8.8.8.8", existe realmente, o ping recebe duas respostas, a verdadeira e a nossa, e por isso o segundo aparece como "DUP!".
