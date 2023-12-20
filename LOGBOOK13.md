@@ -102,3 +102,27 @@ Depois, vamos incrementando o TTL e enviando novamente os pacotes até chegar ao
 Corremos o programa e obtivemos:
 ![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_26.png)
 
+
+## Task 1.4
+
+Nesta task temos que fazer um programa que receba pacotes ICMP, e, independentemente do IP de destino dos mesmos, gere um echo reply. Logo, quando um dispositivo utilizar o comando `ping` para um IP X, independentemente se o dispositivo X está vivo ou não, o programa ping irá receber sempre uma resposta a indicar que X está vivo. 
+
+Para fazer isto começamos por criar o seguinte programa, no ficheiro "fake_ping.py":
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_29.png)
+
+Para o testar, corremos o programa "fake_ping.py" num terminal da nossa VM e abrimos o terminal do host B e corremos:
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_28.png)
+
+Porém ao contrário do que estavamos à espera ele não funcionou. Para tentar resolver o problema, corremos novamente o "fake_ping.py" e `ping 1.2.3.4`, mas desta vez também o wireshark ao mesmo tempo, e vimos que o programa "fake_ping.py" envia pacotes do tipo "Type: 8 (Echo (ping) request)", quando deveria enviar "Type: 0 (Echo (ping) reply)".
+
+![](https://git.fe.up.pt/fsi/fsi2324/logs/l06g07/-/raw/main/images/sn_sp_33.png)
+
+Com isto alteramos o programa para que gerasse "Echo (ping) reply" e para que so respondesse a "Echo (ping) request":
+
+
+
+
+
+
